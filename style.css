@@ -713,7 +713,7 @@ input:hover {background: #e2e2e2db !important;}
     font-family: segoi ui;
     font-size: 18px;
     transition: 1s;
-} #loginFields > span { display: block; width: fit-content; width: fit-content; margin: auto; color: #484848db; } #loginPanel > input:focus { outline: none; border: solid 2px #3F51B5 !important; }} 
+} #loginFields > span { display: block; width: fit-content; width: fit-content; margin: auto; color: #484848db; } #loginPanel > input:focus { outline: none; border: solid 2px #3F51B5 !important; }
 
 #loginPanel > input {}
 
