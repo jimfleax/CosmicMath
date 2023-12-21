@@ -104,7 +104,7 @@ CosmicMath = {
                 document.querySelector('#mainBoard').append($$$$);
                 document.querySelector("#app > svg").innerHTML = `<path fill-rule="evenodd" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>`;
                 document.querySelector("#app > svg").onclick = ()=>{
-                    $.infoPanel(1, 'CosmicMath', 'Introducing the ultimate CosmicMath app, housing '+ $.courses.Topics.length + '+ different types of sums, which will help you build lightning-fast calculation speed and internalize mathematical concepts. <br><br>CosmicMath algorithmically-generates unlimited sums for you to practice regularly and familiarize yourself with numbers and master mathematics. It improves your meta-skills such as calculation speed and helps you to build mathematical intuition.<br><br>The CosmicMath interface has been designed with utmost care for you, priortizing immersive experience and responsiveness. You will find it easier to focus with this minimal and responsive user-interface.<br><br>Meet the Fluent Mode which enables you to solve sums fluently without spending much time for submitting. It automatically submits if you have entered the correct answer and lets you proceed to the next sum instantly.<br><br>Since the app is yet to reach a stable functional stage, often (hopefully rarely) the sum generates a wrong answer due to bugs in the algorithm - to fix this and ensure the app is generating correct answer I have created a shortcut to see the answer (to be used rarely when you have a doubt regarding the answer). To use this, type <code>jim.ans</code> in any of the input blanks and submit.<br><br>I would appreciate any feedback regarding the UI or queries regarding errors. This app is still under development.<br><br> - Reetabrata Bhandari');
+                    $.infoPanel(1, 'CosmicMath', 'Introducing the ultimate CosmicMath app, housing ' + $.courses.Topics.length + '+ different types of sums, which will help you build lightning-fast calculation speed and internalize mathematical concepts. <br><br>CosmicMath algorithmically-generates unlimited sums for you to practice regularly and familiarize yourself with numbers and master mathematics. It improves your meta-skills such as calculation speed and helps you to build mathematical intuition.<br><br>The CosmicMath interface has been designed with utmost care for you, priortizing immersive experience and responsiveness. You will find it easier to focus with this minimal and responsive user-interface.<br><br>Meet the Fluent Mode which enables you to solve sums fluently without spending much time for submitting. It automatically submits if you have entered the correct answer and lets you proceed to the next sum instantly.<br><br>I would appreciate any feedback regarding the UI or queries regarding errors. This app is still under development.<br><br> - Reetabrata Bhandari');
                 }
                 store = getActiveTopic('Topics', 1);
                 store.forEach(function(a, b) {
@@ -382,72 +382,114 @@ CosmicMath = {
     },
     'submit': function(id, address, res, answer, isArray=false, actionRequired=true) {
         CosmicMath.auth.check();
-        var tempArr = [];
-        if (document.querySelectorAll("#response").length > 1) {
-            document.querySelectorAll("#response").forEach((a)=>{
-                tempArr.push(a.value);
-            }
-            );
-        } else {
-            tempArr.push(document.querySelector("#response").value);
-        }
-        if (tempArr.includes('jim.ans')) {
-            console.log('SHOW ANSWER');
-            $.msg("Revealed answer");
-            try {
-                (document.querySelectorAll("#response").length > 1) ? (document.querySelectorAll("#response").forEach((elm,k)=>{
-                elm.value = (!(typeof answer === 'object') ? answer.split(',')[k] : answer[k])
-            }
-            )) : (document.querySelector("#response").value = answer);
-            } catch(error) {
-                $.msg(error);
-            }
-            delete tempArr;
-        } else {
-            ($_) ? actionRequired = false : null;
-            var output;
-            if (isArray === true) {
-                !(typeof answer === 'object') ? answer = answer.split(',') : null;
-                answer.forEach(function(m, n) {
-                    answer[n] = parseFloat(m);
-                });
-                answer = answer.sort().join(',');
-                !(typeof res === 'object') ? res = res.split(',') : null;
-                res.forEach(function(m, n) {
-                    res[n] = parseFloat(m);
-                });
-                res = res.sort().join(',');
-                if (res === answer) {
-                    (actionRequired) ? document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>` : (output = 'correct');
-                    document.querySelectorAll("#response").forEach((l)=>{
-                        l.disabled = true
+        ($_) ? actionRequired = false : null;
+        var output;
+        if (isArray === true) {
+            !(typeof answer === 'object') ? answer = answer.split(',') : null;
+            answer.forEach(function(m, n) {
+                answer[n] = parseFloat(m);
+            });
+            answer = answer.sort().join(',');
+            !(typeof res === 'object') ? res = res.split(',') : null;
+            res.forEach(function(m, n) {
+                res[n] = parseFloat(m);
+            });
+            res = res.sort().join(',');
+            if (res === answer) {
+                (actionRequired) ? document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>` : (output = 'correct');
+                document.querySelectorAll("#response").forEach((l)=>{
+                    l.disabled = true
+                }
+                );
+            } else
+                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn">See answer</button></div>`,
+                (document.querySelector('#nxtBtn').onclick = ()=>{
+                    document.querySelector('#nxtBtn').innerHTML = 'Next';
+                    document.querySelector('#nxtBtn').onclick = ()=>{
+                        $.createSum(id, address);
+                    }
+                    ;
+                    document.querySelector("#btn").disabled = true;
+                    document.querySelectorAll('#response').forEach((g)=>{
+                        g.disabled = true;
+                        g.style.background = `rgb(76 175 80 / 18%)`;
+                        g.style.boxShadow = `0px 0px 5px -1px #1fcf264d`;
+                        g.style.border = `1px solid rgb(76 175 80 / 48%)`;
+                        g.opacity = `1`;
                     }
                     );
-                } else
-                    (actionRequired) ? document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>` : (output = 'wrong');
-            } else if (isArray === false) {
-                if (parseFloat(res).toString() === parseFloat(answer).toString()) {
-                    (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>`,
-                    document.querySelectorAll("#response").forEach((l)=>{
-                        l.disabled = true
+                    ((document.querySelectorAll("#response").length > 1) ? ((document.querySelectorAll("#response")).forEach((elm,k)=>{
+                        elm.value = (!(typeof answer === 'object') ? answer.split(',')[k] : answer[k])
                     }
-                    )) : (output = 'correct');
-                } else
-                    (actionRequired) ? document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>` : (output = 'wrong');
-            } else if (isArray === 'expression') {
-                if ((res).toString() === (answer).toString()) {
-                    (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>`,
-                    document.querySelectorAll("#response").forEach((l)=>{
-                        l.disabled = true
+                    )) : (document.querySelector("#response").value = answer));
+
+                }
+                )) : (output = 'wrong');
+        } else if (isArray === false) {
+            if (parseFloat(res).toString() === parseFloat(answer).toString()) {
+                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>`,
+                document.querySelectorAll("#response").forEach((l)=>{
+                    l.disabled = true
+                }
+                )) : (output = 'correct');
+            } else
+                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn">See answer</button></div>`,
+                (document.querySelector('#nxtBtn').onclick = ()=>{
+                    document.querySelector('#nxtBtn').innerHTML = 'Next';
+                    document.querySelector('#nxtBtn').onclick = ()=>{
+                        $.createSum(id, address);
                     }
-                    )) : (output = 'correct');
-                } else
-                    (actionRequired) ? document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>` : (output = 'wrong');
-            }
-            ;($_) ? $0 = output : null;
-            return output;
+                    ;
+                    document.querySelector("#btn").disabled = true;
+                    document.querySelectorAll('#response').forEach((g)=>{
+                        g.disabled = true;
+                        g.style.background = `rgb(76 175 80 / 18%)`;
+                        g.style.boxShadow = `0px 0px 5px -1px #1fcf264d`;
+                        g.style.border = `1px solid rgb(76 175 80 / 48%)`;
+                        g.opacity = `1`;
+                    }
+                    );
+                    ((document.querySelectorAll("#response").length > 1) ? ((document.querySelectorAll("#response")).forEach((elm,k)=>{
+                        elm.value = (!(typeof answer === 'object') ? answer.split(',')[k] : answer[k])
+                    }
+                    )) : (document.querySelector("#response").value = answer));
+
+                }
+                )) : (output = 'wrong');
+        } else if (isArray === 'expression') {
+            if ((res).toString() === (answer).toString()) {
+                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>`,
+                document.querySelectorAll("#response").forEach((l)=>{
+                    l.disabled = true
+                }
+                )) : (output = 'correct');
+            } else
+                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn">See answer</button></div>`,
+                (document.querySelector('#nxtBtn').onclick = ()=>{
+                    document.querySelector('#nxtBtn').innerHTML = 'Next';
+                    document.querySelector('#nxtBtn').onclick = ()=>{
+                        $.createSum(id, address);
+                    }
+                    ;
+                    document.querySelector("#btn").disabled = true;
+                    document.querySelectorAll('#response').forEach((g)=>{
+                        g.disabled = true;
+                        g.style.background = `rgb(76 175 80 / 18%)`;
+                        g.style.boxShadow = `0px 0px 5px -1px #1fcf264d`;
+                        g.style.border = `1px solid rgb(76 175 80 / 48%)`;
+                        g.opacity = `1`;
+                    }
+                    );
+                    ((document.querySelectorAll("#response").length > 1) ? ((document.querySelectorAll("#response")).forEach((elm,k)=>{
+                        elm.value = (!(typeof answer === 'object') ? answer.split(',')[k] : answer[k])
+                    }
+                    )) : (document.querySelector("#response").value = answer));
+
+                }
+                )) : (output = 'wrong');
         }
-        ;
+        ;($_) ? $0 = output : null;
+        return output;
 
     },
     'err': [],
