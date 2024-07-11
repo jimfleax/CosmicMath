@@ -349,7 +349,7 @@ const $db = {
     },
     'Home_Arithmetic_Indices_Easy': {
         'question': function() {
-            var a = $.random(10, true, 0);
+            var a = $.random(100, true, 0);
             var b = $.random(3, true, 0, 1);
             this.answer = Math.pow(a, b);
             return a + expo(b);
@@ -392,7 +392,7 @@ const $db = {
     },
     'Home_Arithmetic_Indices_Medium': {
         'question': function() {
-            var a = $.random(10, true, 0);
+            var a = $.random(100, true, 0);
             var b = $.random(6, true, 0, 1);
             this.answer = Math.pow(a, b);
             return a + expo(b);
@@ -435,7 +435,7 @@ const $db = {
     },
     'Home_Arithmetic_Indices_Difficult': {
         'question': function() {
-            var a = $.random(10, true, 0);
+            var a = $.random(100, true, 0);
             var b = $.random(10, true, 0, 1);
             this.answer = Math.pow(a, b);
             return a + expo(b);
@@ -476,10 +476,94 @@ const $db = {
 
         }
     },
-    'Home_Arithmetic_Squareroot': {
+    'Home_Arithmetic_Squareroot_Easy': {
         'question': function() {
             var a = $.random(10, true, 0);
-            this.answer = Math.sqrt(a).toFixed(2);
+            this.answer = Math.sqrt(a).toFixed(1);
+            return '√' + a;
+
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            $$[0] = new Text(this.question(),'');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, parseFloat(document.querySelector('#response').value).toFixed(2), ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, parseFloat(document.querySelector('#response').value).toFixed(2), ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+
+        }
+    },
+    'Home_Arithmetic_Squareroot_Medium': {
+        'question': function() {
+            var a = $.random(100, true, 0);
+            this.answer = Math.sqrt(a).toFixed();
+            return '√' + a;
+
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            $$[0] = new Text(this.question(),'');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, parseFloat(document.querySelector('#response').value).toFixed(2), ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, parseFloat(document.querySelector('#response').value).toFixed(2), ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+
+        }
+    },
+    'Home_Arithmetic_Squareroot_Difficult': {
+        'question': function() {
+            var a = $.random(1000, true, 0);
+            this.answer = Math.sqrt(a).toFixed(1);
             return '√' + a;
 
         },
