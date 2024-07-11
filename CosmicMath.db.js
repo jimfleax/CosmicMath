@@ -1,5 +1,5 @@
 const $db = {
-    'Home_Arithmetic_Addition': {
+    'Home_Arithmetic_Addition_Easy': {
         'question': function() {
             var a = $.random(100, true, 0);
             var b = $.random(100, true, 0);
@@ -42,7 +42,50 @@ const $db = {
 
         }
     },
-    'Home_Arithmetic_Subtraction': {
+    'Home_Arithmetic_Addition_Difficult': {
+        'question': function() {
+            var a = $.random(100000, false, 0).toFixed(2);
+            var b = $.random(100000, false, 0).toFixed(2);
+            this.answer = a + b;
+
+            return `${a} + ${b}`;
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            $$[0] = new Text(this.question(),'');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, document.querySelector('#response').value, ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, document.querySelector('#response').value, ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+
+        }
+    },
+    'Home_Arithmetic_Subtraction_Easy': {
         'question': function() {
             var a = $.random(100, true, 0);
             var b = $.random(100, true, 0);
@@ -89,10 +132,139 @@ const $db = {
 
         }
     },
-    'Home_Arithmetic_Multiply': {
+    'Home_Arithmetic_Subtraction_Difficult': {
+        'question': function() {
+            var a = $.random(10000, true, 0);
+            var b = $.random(10000, true, 0);
+            this.answer = a - b;
+            return `${a} - ${b}`;
+
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            $$[0] = new Text(this.question(),'');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, document.querySelector('#response').value, ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, document.querySelector('#response').value, ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+
+        }
+    },
+    'Home_Arithmetic_Multiply_Easy': {
         'question': function() {
             var a = $.random(100, true, 0);
             var b = $.random(100, true, 0);
+            this.answer = a * b;
+            return a + ' × ' + b;
+
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            $$[0] = new Text(this.question(),'');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, document.querySelector('#response').value, ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, document.querySelector('#response').value, ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+
+        }
+    },
+    'Home_Arithmetic_Multiply_Medium': {
+        'question': function() {
+            var a = $.random(10000, true, 0);
+            var b = $.random(1000, true, 0);
+            this.answer = a * b;
+            return a + ' × ' + b;
+
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            $$[0] = new Text(this.question(),'');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, document.querySelector('#response').value, ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, document.querySelector('#response').value, ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+
+        }
+    },
+    'Home_Arithmetic_Multiply_Difficult': {
+        'question': function() {
+            var a = $.random(1000, false, 0).toFixed(2);
+            var b = $.random(1000, false, 0).toFixed(2);
             this.answer = a * b;
             return a + ' × ' + b;
 
