@@ -44,8 +44,8 @@ const $db = {
     },
     'Home_Arithmetic_Addition_Difficult': {
         'question': function() {
-            var a = $.random(100000, false, 0).toFixed(2);
-            var b = $.random(100000, false, 0).toFixed(2);
+            var a = parseFloat($.random(100000, false, 0).toFixed(2));
+            var b = parseFloat($.random(100000, false, 0).toFixed(2));
             this.answer = a + b;
 
             return `${a} + ${b}`;
@@ -263,8 +263,8 @@ const $db = {
     },
     'Home_Arithmetic_Multiply_Difficult': {
         'question': function() {
-            var a = $.random(1000, false, 0).toFixed(2);
-            var b = $.random(1000, false, 0).toFixed(2);
+            var a = parseFloat($.random(1000, false, 0).toFixed(2));
+            var b = parseFloat($.random(1000, false, 0).toFixed(2));
             this.answer = a * b;
             return a + ' × ' + b;
 
@@ -521,7 +521,7 @@ const $db = {
     'Home_Arithmetic_Squareroot_Medium': {
         'question': function() {
             var a = $.random(100, true, 0);
-            this.answer = Math.sqrt(a).toFixed();
+            this.answer = Math.sqrt(a).toFixed(1);
             return '√' + a;
 
         },
