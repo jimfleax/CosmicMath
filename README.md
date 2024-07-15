@@ -1,4 +1,5 @@
 <h1>CosmicMath: <i>Readme</i></h1>
+
 Introducing the ultimate CosmicMath app, housing 43+ different types of sums, which will help you build lightning-fast calculation speed and internalize mathematical concepts.
 
 CosmicMath algorithmically-generates unlimited sums for you to practice regularly and familiarize yourself with numbers and master mathematics. It improves your meta-skills such as calculation speed and helps you to build mathematical intuition.
