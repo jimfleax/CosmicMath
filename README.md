@@ -9,4 +9,4 @@ Meet the Fluent Mode which enables you to solve sums fluently without spending m
 
 I would appreciate any feedback regarding the UI or queries regarding errors. This app is still under development.
 
-<a href="http://jimfleax.onrender.com" target="_blank">Visit my website.</a>
+<b><a href="http://jimfleax.onrender.com" target="blank">Visit my website.</a></b>
