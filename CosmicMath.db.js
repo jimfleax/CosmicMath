@@ -2290,6 +2290,51 @@ const $db = {
 
         }
     },
+    Home_Logarithms_Level1: {
+        question: function() {
+            var base = $.random(10, true, 0,1);
+            var expo = parseFloat(rand_inverval_div(0,20, 1).toFixed(4))-10;
+            var num = Math.pow(base,expo);
+            console.log(`log of ${frac(undefined, undefined, num)} base ${base} equals to ${frac(undefined, undefined, expo)}`);
+            this.answer = frac(undefined, undefined, expo);
+            return [base,frac(undefined, undefined, num)];
+        },
+        answer: null,
+        interface: function(name, address) {
+            var $$ = [];
+            var quest = this.question();
+            $$[0] = new Text('','');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, document.querySelector('#response').value, ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, document.querySelector('#response').value, ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+            $$[0].outerHTML = `<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>log</mi> <mn>${quest[0]}</mn> </msub> <mn>${quest[1]}</mn> </math>`;
+        }
+    }
 }
 
 // create an object for polynomials. that will solve the issue of algebraic manipulation.

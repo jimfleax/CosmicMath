@@ -1,4 +1,4 @@
-'use strict'
+
 var $$ = [];
 
 class Button {
@@ -216,4 +216,15 @@ var expo = (num) => {
         }
     });
     return codes.join('');
+};
+
+function recur(decimal) {
+    const before_point = decimal.split(".")[0];
+    const after_point = decimal.split(".")[1];
+    var repeat = [];
+    var loc = 0;
+    while (!loc || repeat.join("")+repeat.join("")!=after_point.slice(0,loc*2)) {
+        repeat.push(after_point.split("")[loc++]);
+    };
+    return `${repeat.join("")}/${Math.pow(10,repeat.join(""))-1}`;
 }
