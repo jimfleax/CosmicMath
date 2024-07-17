@@ -217,14 +217,22 @@ var expo = (num) => {
     });
     return codes.join('');
 };
-
+var rand_inverval_div = (min,max,step) => {
+    min+=(min%step);
+    max-=(max%step);
+    return step*Math.round(Math.random()*max/step);
+};
 function recur(decimal) {
     const before_point = decimal.split(".")[0];
     const after_point = decimal.split(".")[1];
     var repeat = [];
     var loc = 0;
     while (!loc || repeat.join("")+repeat.join("")!=after_point.slice(0,loc*2)) {
+        if (repeat.length >= 50) {
+            return false;
+        };
         repeat.push(after_point.split("")[loc++]);
     };
-    return `${repeat.join("")}/${Math.pow(10,repeat.join(""))-1}`;
+    console.log([parseInt(repeat.join("")), Math.pow(10,repeat.join("").length)-1]);
+    return frac(parseInt(repeat.join("")), Math.pow(10,repeat.join("").length)-1);
 }

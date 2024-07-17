@@ -2292,12 +2292,14 @@ const $db = {
     },
     Home_Logarithms_Level1: {
         question: function() {
-            var base = $.random(10, true, 0,1);
-            var expo = parseFloat(rand_inverval_div(0,20, 1).toFixed(4))-10;
-            var num = Math.pow(base,expo);
-            console.log(`log of ${frac(undefined, undefined, num)} base ${base} equals to ${frac(undefined, undefined, expo)}`);
-            this.answer = frac(undefined, undefined, expo);
-            return [base,frac(undefined, undefined, num)];
+            var base = $.random(10, true, 0,1,4,8,9); //should be primes
+            var a = $.random(10, true, 0,1);
+            var b = $.random(5, true, 0);
+            var qbase = Math.pow(base,b);
+            var num = Math.pow(base, a);
+            var sign = $.random(1, true);
+            this.answer = sign ? `-${frac(a,b)}`:frac(a,b);
+            return [qbase, (sign ? frac(1,num):frac(undefined, undefined, num))];
         },
         answer: null,
         interface: function(name, address) {
