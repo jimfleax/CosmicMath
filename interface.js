@@ -235,4 +235,9 @@ function recur(decimal) {
     };
     console.log([parseInt(repeat.join("")), Math.pow(10,repeat.join("").length)-1]);
     return frac(parseInt(repeat.join("")), Math.pow(10,repeat.join("").length)-1);
+};
+var render = (tag, inner) => {
+    var el = document.createElement(tag);
+    el.innerHTML = inner;
+    return el;
 }

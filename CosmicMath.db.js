@@ -2292,14 +2292,13 @@ const $db = {
     },
     Home_Logarithms_Level1: {
         question: function() {
-            var base = $.random(10, true, 0,1,4,8,9); //should be primes
-            var a = $.random(10, true, 0,1);
-            var b = $.random(5, true, 0);
-            var qbase = Math.pow(base,b);
-            var num = Math.pow(base, a);
+            var base = $.random(10, true, 0,1);
+            var expo = $.random((12-base), true, 0);
+            var num = Math.pow(base, expo);
             var sign = $.random(1, true);
-            this.answer = sign ? `-${frac(a,b)}`:frac(a,b);
-            return [qbase, (sign ? frac(1,num):frac(undefined, undefined, num))];
+            this.answer = sign ? `-${expo}`:expo;
+            return [base, (sign ? `<mfrac><msup><mn>1</mn></msup><mn>${num}</mn></mfrac>`:`<mn>${(num)}</mn>`)];
+            //return render("div", `<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>log</mi> <mn>${quest[0]}</mn> </msub> <mn>${quest[1]}</mn> </math>`)
         },
         answer: null,
         interface: function(name, address) {
@@ -2334,7 +2333,67 @@ const $db = {
 
                 }
             });
-            $$[0].outerHTML = `<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>log</mi> <mn>${quest[0]}</mn> </msub> <mn>${quest[1]}</mn> </math>`;
+            $$[0].outerHTML = `<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>log</mi> <mn>${quest[0]}</mn> </msub>${quest[1]} </math>`;
+        }
+    },
+    Home_Logarithms_Level2: {
+        question: function() {
+            var base = $.random(10, true, 0,1,4,8,9); //should be primes
+            var a = $.random(10, true, 0,1);
+            var b = $.random(5, true, 0);
+            var qbase = Math.pow(base,b);
+            var num = Math.pow(base, a);
+            var nnum;
+            (num.length >= 3) || ((()=>{
+                var numm = 0;
+                var rem = num;
+                while (rem>1) {
+                    rem/=base;
+                    numm++;
+                };
+                var na = $.random((numm-1),true,0);
+                var ana = numm-na;
+                nnum = `${Math.pow(base,na)}*${Math.pow(base,ana)}`;
+            })());
+            var sign = $.random(1, true);
+            this.answer = sign ? `-${frac(a,b)}`:frac(a,b);
+            return [qbase, (sign ? `<mfrac><msup><mn>1</mn></msup><mn>${nnum || num}</mn></mfrac>`:`<mn>${(nnum || num)}</mn>`)];
+            //return render("div", `<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>log</mi> <mn>${quest[0]}</mn> </msub> <mn>${quest[1]}</mn> </math>`)
+        },
+        answer: null,
+        interface: function(name, address) {
+            var $$ = [];
+            var quest = this.question();
+            $$[0] = new Text('','');
+            $$[1] = new Break();
+            $$[2] = new Input();
+            $$[3] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, document.querySelector('#response').value, ans);
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, document.querySelector('#response').value, ans);
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+            $$[0].outerHTML = `<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>log</mi> <mn>${quest[0]}</mn> </msub>${quest[1]} </math>`;
         }
     }
 }
