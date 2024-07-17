@@ -586,7 +586,7 @@ body {
 
 #braincrunchmode {
     visibility: hidden;
-    filter: brightness(1.9);
+    /* filter: brightness(1.9); */
     user-select: none;
     width: fit-content;
     height: fit-content;
@@ -839,16 +839,14 @@ td > input:hover {
     background: #3f4b8f17;
 }
 
-
-
 #fluent {
     width: 40px;
     height: 44px;
     margin: auto;
     display: block;
-    fill: #414573;
+    fill: #7986cb;
     filter: drop-shadow(1px 2px 2px #60606078);
-    stroke: #414573;
+    stroke: #7986cb;
     stroke-width: 20px;
     stroke-linejoin: round;
     transition: 400ms;
@@ -857,4 +855,39 @@ td > input:hover {
 svg#fluent:hover {
     filter: drop-shadow(1px 1px 4px #606060a1);
     transform: scale(1.2);
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.1);
+    }
+
+    20% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.1);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+svg#fluent.active {
+    animation: beat 1500ms infinite cubic-bezier(0.55, -0.19, 0.76, 0.95) running forwards;
 }

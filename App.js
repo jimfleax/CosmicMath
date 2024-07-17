@@ -363,6 +363,7 @@ CosmicMath = {
     },
     'fluentMode': function(id, address) {
         CosmicMath.auth.check();
+        document.querySelector("#fluent").classList.add("active");
         ds = document.querySelector('#sc');
         ds.innerHTML = currentscore;
         r = document.querySelector('#response').addEventListener('keyup', function() {
