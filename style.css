@@ -595,11 +595,11 @@ body {
     font-size: 1.9em;
     font-weight: 900;
     color: #c2d5de;
-    background: linear-gradient(159deg, #041735, #1e3457cf);
-    background: #414573;
-    box-shadow: 1px 1px 6px -2px #0000008f;
+    /* background: linear-gradient(159deg, #041735, #1e3457cf); */
+    /* background: #414573; */
+    /* box-shadow: 1px 1px 6px -2px #0000008f; */
     border-radius: 10px;
-    padding: 1vh 2vh;
+    padding: 2vh 2vh;
     position: absolute;
     top: 2%;
     left: auto;
@@ -839,3 +839,22 @@ td > input:hover {
     background: #3f4b8f17;
 }
 
+
+
+#fluent {
+    width: 40px;
+    height: 44px;
+    margin: auto;
+    display: block;
+    fill: #414573;
+    filter: drop-shadow(1px 2px 2px #60606078);
+    stroke: #414573;
+    stroke-width: 20px;
+    stroke-linejoin: round;
+    transition: 400ms;
+}
+
+svg#fluent:hover {
+    filter: drop-shadow(1px 1px 4px #606060a1);
+    transform: scale(1.2);
+}
