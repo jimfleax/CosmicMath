@@ -2353,7 +2353,7 @@ const $db = {
                 };
                 var na = $.random((numm-1),true,0);
                 var ana = numm-na;
-                nnum = `${Math.pow(base,na)}*${Math.pow(base,ana)}`;
+                nnum = `${Math.pow(base,na)} × ${Math.pow(base,ana)}`;
             })());
             var sign = $.random(1, true);
             this.answer = sign ? `-${frac(a,b)}`:frac(a,b);
