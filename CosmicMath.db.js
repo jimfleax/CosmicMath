@@ -2376,14 +2376,14 @@ const $db = {
                     e.onkeypress = function(i) {
                         console.log(i);
                         if (i.which == 13) {
-                            $.submit(name, address, document.querySelector('#response').value, ans);
+                            $.submit(name, address, parseVal(document.querySelector('#response').value), parseVal(ans));
                         }
                     }
                     ;
                     break;
                 case 'button':
                     e.onclick = function() {
-                        $.submit(name, address, document.querySelector('#response').value, ans);
+                        $.submit(name, address, parseVal(document.querySelector('#response').value), parseVal(ans));
                     }
                     ;
                     break;
