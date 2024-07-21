@@ -240,4 +240,12 @@ var render = (tag, inner) => {
     var el = document.createElement(tag);
     el.innerHTML = inner;
     return el;
-}
+};
+var parseVal = (val) => {
+    if (typeof val === 'string') {
+        const val_split = val.split('/');
+        if (val_split.length > 2) throw new Error("Invalid value provided");
+        return (val_split.length === 2) ? (parseInt(val_split[0])/parseInt(val_split[1])) : parseInt(val_split[0]);
+    };
+    return val;
+};
