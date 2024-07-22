@@ -2418,6 +2418,7 @@ const $db = {
             $$[2] = new Input(undefined,'margin:10px;','x');
             $$[3] = new Input(undefined,'margin:10px;','y');
             $$[4] = new Button();
+            
             ans = this.answer;
             $$.forEach(function(e) {
                 document.querySelector('#appMain').append(e);
