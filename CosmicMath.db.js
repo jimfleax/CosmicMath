@@ -2403,11 +2403,11 @@ const $db = {
             var x = $.random(5, true, 0);
             var y = $.random(5, true, 0);
             var m = $.random(5, true);
-            var n = $.random(5, true);
+            var n = $.random(10, true)-5;
             var first_rhs = (a**x)+(b**y);
             var first_lhs = `${a}<sup>x</sup> + ${b}<sup>y</sup>`;
             var sec_rhs = (m*x)+(n*y);
-            var sec_lhs = `${((m===1) ? (''):(m || ''))}x + ${((n===1) ? (''):(n || ''))}y`;
+            var sec_lhs = `${((m===1) ? (''):(m || ''))}x ${(n>=0) ? ('+'):('-')} ${((n===1) ? (''):(n || ''))}y`;
             this.answer = [x,y];
             return '<span style="font-family:KaTeX_Main;">' + first_lhs + ' = ' + first_rhs + '<br>' + sec_lhs + ' = ' + sec_rhs + '</span>';
         },
