@@ -2402,12 +2402,65 @@ const $db = {
             var b = $.random(5, true, 0);
             var x = $.random(5, true, 0);
             var y = $.random(5, true, 0);
+            var first_rhs = (a**x)+(b**y);
+            var first_lhs = `${a}<sup>x</sup> + ${b}<sup>y</sup>`;
+            var sec_rhs = (x)+(y);
+            console.log(m,n)
+            var sec_lhs = `x + y`;
+            this.answer = [x,y];
+            return '<span style="font-family:KaTeX_Main;">' + first_lhs + ' = ' + first_rhs + '<br>' + sec_lhs + ' = ' + sec_rhs + '</span>';
+        },
+        'answer': null,
+        'interface': function(name, address) {
+            var $$ = [];
+            var questionArr = this.question();
+            $$[0] = new Text('','');
+            $$[1] = new Break();
+            $$[2] = new Input(undefined,'margin:10px;','x');
+            $$[3] = new Input(undefined,'margin:10px;','y');
+            $$[4] = new Button();
+            ans = this.answer;
+            $$.forEach(function(e) {
+                document.querySelector('#appMain').append(e);
+                switch (e.localName) {
+                case 'input':
+                    e.onkeypress = function(i) {
+                        console.log(i);
+                        if (i.which == 13) {
+                            $.submit(name, address, [document.querySelectorAll('#response')[0].value, document.querySelectorAll('#response')[1].value].join(), ans.join());
+                        }
+                    }
+                    ;
+                    break;
+                case 'button':
+                    e.onclick = function() {
+                        $.submit(name, address, [document.querySelectorAll('#response')[0].value, document.querySelectorAll('#response')[1].value].join(), ans.join());
+                    }
+                    ;
+                    break;
+                default:
+                    null;
+                    break;
+
+                }
+            });
+                $$[0].outerHTML = questionArr;
+
+        }
+    },
+    Home_Simultaneousequations_Level4: {
+        question: function() {
+            var a = $.random(5, true, 0);
+            var b = $.random(5, true, 0);
+            var x = $.random(5, true, 0);
+            var y = $.random(5, true, 0);
             var m = $.random(5, true);
             var n = $.random(10, true)-5;
             var first_rhs = (a**x)+(b**y);
             var first_lhs = `${a}<sup>x</sup> + ${b}<sup>y</sup>`;
             var sec_rhs = (m*x)+(n*y);
-            var sec_lhs = `${((m===1) ? (''):(m || ''))}x ${(n>=0) ? ('+'):('-')} ${((n===1) ? (''):(n || ''))}y`;
+            console.log(m,n)
+            var sec_lhs = `${((m===1) ? (''):(m || ''))}x ${(n>=0) ? ('+'):('')} ${((n===1) ? (''):(n || ''))}y`;
             this.answer = [x,y];
             return '<span style="font-family:KaTeX_Main;">' + first_lhs + ' = ' + first_rhs + '<br>' + sec_lhs + ' = ' + sec_rhs + '</span>';
         },
