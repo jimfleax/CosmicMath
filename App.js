@@ -55,11 +55,12 @@ CosmicMath = {
         }
     },
     'courses': {
-        'Topics': ['Topics.Arithmetic.Addition.Easy', 'Topics.Arithmetic.Addition.Difficult', 'Topics.Arithmetic.Subtraction.Easy', 'Topics.Arithmetic.Subtraction.Difficult', 'Topics.Arithmetic.Multiply.Easy', 'Topics.Arithmetic.Multiply.Medium', 'Topics.Arithmetic.Multiply.Difficult', 'Topics.Arithmetic.Divide.Easy', 'Topics.Arithmetic.Divide.Medium', 'Topics.Arithmetic.Divide.Difficult', 'Topics.Arithmetic.Indices.Easy', 'Topics.Arithmetic.Indices.Medium', 'Topics.Arithmetic.Indices.Difficult', 'Topics.Arithmetic.Square root.Easy', 'Topics.Arithmetic.Square root.Medium', 'Topics.Arithmetic.Square root.Difficult', 'Topics.Arithmetic.Convert.Decimal', 'Topics.Arithmetic.Convert.Percentage', 'Topics.Arithmetic.Factors and divisors', 'Topics.Arithmetic.Number system', 'Topics.Permutations and combinations.Factorials', 'Topics.Permutations and combinations.Permutations', 'Topics.Permutations and combinations.Combinations', 'Topics.Percentages.Type 1', 'Topics.Percentages.Type 2', 'Topics.Series.Arithmetic progression', 'Topics.Series.Geometric progression', 'Topics.Trigonometry.Trigonometric ratios', 'Topics.Trigonometry.Trigonometric approximations', 'Topics.Algebra.Cubic expressions.Cubic expansion', 'Topics.Algebra.Cubic expressions.Cubic factorisation', 'Topics.Algebra.Quadratic equations', 'Topics.Simultaneous equations.Type 1', 'Topics.Simultaneous equations.Type 2', 'Topics.Simultaneous equations.Type 3', 'Topics.Simultaneous equations.Type 4', 'Topics.Simultaneous equations.Type 5', 'Topics.Simultaneous equations.Linear equations', 'Topics.Fractions.Multiplication', 'Topics.Fractions.Addition', 'Topics.Fractions.Subtraction', 'Topics.Circle theorem.Degrees to radians', 'Topics.Circle theorem.Radians to degrees', 'Topics.Circle theorem.Sectors', 'Topics.Statistics.Binomial distribution', 'Topics.Statistics.Geometric distribution', 'Topics.Logarithms.Level 1', 'Topics.Logarithms.Level 2']
+        'Topics': ['Topics.Arithmetic.Addition.Easy', 'Topics.Arithmetic.Addition.Difficult', 'Topics.Arithmetic.Subtraction.Easy', 'Topics.Arithmetic.Subtraction.Difficult', 'Topics.Arithmetic.Multiply.Easy', 'Topics.Arithmetic.Multiply.Medium', 'Topics.Arithmetic.Multiply.Difficult', 'Topics.Arithmetic.Divide', 'Topics.Arithmetic.Indices.Easy', 'Topics.Arithmetic.Indices.Medium', 'Topics.Arithmetic.Indices.Difficult', 'Topics.Arithmetic.Square root.Easy', 'Topics.Arithmetic.Square root.Medium', 'Topics.Arithmetic.Square root.Difficult', 'Topics.Arithmetic.Convert.Decimal', 'Topics.Arithmetic.Convert.Percentage', 'Topics.Arithmetic.Factors and divisors', 'Topics.Arithmetic.Number system', 'Topics.Permutations and combinations.Factorials', 'Topics.Permutations and combinations.Permutations', 'Topics.Permutations and combinations.Combinations', 'Topics.Percentages.Type 1', 'Topics.Percentages.Type 2', 'Topics.Series.Arithmetic progression', 'Topics.Series.Geometric progression', 'Topics.Trigonometry.Trigonometric ratios', 'Topics.Trigonometry.Trigonometric approximations', 'Topics.Algebra.Cubic expressions.Cubic expansion', 'Topics.Algebra.Cubic expressions.Cubic factorisation', 'Topics.Algebra.Quadratic equations', 'Topics.Simultaneous equations.Type 1', 'Topics.Simultaneous equations.Type 2', 'Topics.Simultaneous equations.Type 3', 'Topics.Simultaneous equations.Type 4', 'Topics.Simultaneous equations.Type 5', 'Topics.Simultaneous equations.Linear equations', 'Topics.Fractions.Multiplication', 'Topics.Fractions.Addition', 'Topics.Fractions.Subtraction', 'Topics.Circle theorem.Degrees to radians', 'Topics.Circle theorem.Radians to degrees', 'Topics.Circle theorem.Sectors', 'Topics.Statistics.Binomial distribution', 'Topics.Statistics.Geometric distribution', 'Topics.Logarithms.Level 1', 'Topics.Logarithms.Level 2']
 
     },
     'beta': {
         'render': function(isHome, active, pos) {
+            console.log(active);
             function getTopic(updateLocalStorage=false) {
                 if (updateLocalStorage === true) {
                     var $topic = [];
@@ -120,6 +121,19 @@ CosmicMath = {
 
                     }
                     ;
+                    if (b+1 === store.length) {
+                        $$$ = document.createElement('div');
+                    $$$.id = 'course';
+                    $$$.innerHTML = '<button tabindex="' + (b+1) + '">Mixed</button>';
+
+                    document.querySelector('#mainBoard').append($$$);
+                    $$$.onclick = function() {
+                        ls.setItem('__currActive', 'Topics');
+                        $.mixedCourse();
+                        ls.location++;
+                    }
+                    ;
+                    }
                     delete $$$;
                     delete $$$$;
                 })
@@ -142,11 +156,10 @@ CosmicMath = {
                 f = [];
                 d.forEach(function(e) {
                     $dup(f, e.split('.'));
-                });
+                });pos
                 atc = f.filter(function(i) {
                     return i.includes(active)
                 })[0];
-
                 if (store[0] === undefined && store.length === 1) {
                     $.createSum(active, ls.cm_address);
                 } else {
@@ -192,6 +205,17 @@ CosmicMath = {
                             $.beta.render(false, a, pos + 1);
                             ls.location++;
                         }
+                        if (b+1 === store.length) {
+                            $$$ = document.createElement('div');
+                        $$$.id = 'course';
+                        $$$.innerHTML = '<button tabindex="' + (b+1) + '">Mixed</button>';
+    
+                        document.querySelector('#mainBoard').append($$$);
+                        $$$.onclick = function() {
+                            $.mixedCourse();
+                        }
+                        ;
+                        };
                         delete $$$;
                         delete $$$$;
                     });
@@ -202,6 +226,13 @@ CosmicMath = {
             ;
 
         }
+    },
+    mixedCourse: function() {
+        var basket = [];
+        $.courses.Topics.forEach((f)=>{basket.push('Home_' + f.split('.').slice(1).join('_'))});
+        basket = basket.filter((a)=>{return a.includes(localStorage['cm_address'])});
+        basket = basket[$.random(basket.length-1, true)];
+        $.createSum(basket.split('_').pop(), basket);
     },
     'launchApp': function() {
         if ($.auth.check() == 'usr_verified_true') {
@@ -382,6 +413,7 @@ CosmicMath = {
     },
     'submit': function(id, address, res, answer, isArray=false, actionRequired=true) {
         CosmicMath.auth.check();
+        var isMixed = !(address === localStorage['cm_address']);
         ($_) ? actionRequired = false : null;
         var output;
         if (isArray === true) {
@@ -396,7 +428,7 @@ CosmicMath = {
             });
             res = res.sort().join(',');
             if (res === answer) {
-                (actionRequired) ? document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>` : (output = 'correct');
+                (actionRequired) ? ((document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn">Next</button></div>`), (document.querySelector("#nxtBtn").onclick = ()=>{isMixed ? $.mixedCourse():$.createSum(id,address)})) : (output = 'correct');
                 document.querySelectorAll("#response").forEach((l)=>{
                     l.disabled = true
                 }
@@ -406,7 +438,7 @@ CosmicMath = {
                 (document.querySelector('#nxtBtn').onclick = ()=>{
                     document.querySelector('#nxtBtn').innerHTML = 'Next';
                     document.querySelector('#nxtBtn').onclick = ()=>{
-                        $.createSum(id, address);
+                        isMixed ? $.mixedCourse():$.createSum(id,address);
                     }
                     ;
                     document.querySelector("#btn").disabled = true;
@@ -427,17 +459,17 @@ CosmicMath = {
                 )) : (output = 'wrong');
         } else if (isArray === false) {
             if (parseFloat(res).toString() === parseFloat(answer).toString()) {
-                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn" onclick="CosmicMath.createSum('${id}','${address}')">Next</button></div>`,
+                (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="correct"><span id="s100">Correct</span><button id="nxtBtn">Next</button></div>`,
                 document.querySelectorAll("#response").forEach((l)=>{
                     l.disabled = true
                 }
-                )) : (output = 'correct');
+                ), (document.querySelector("#nxtBtn").onclick = ()=>{isMixed ? $.mixedCourse():$.createSum(id,address)})) : (output = 'correct');
             } else
                 (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn">See answer</button></div>`,
                 (document.querySelector('#nxtBtn').onclick = ()=>{
                     document.querySelector('#nxtBtn').innerHTML = 'Next';
                     document.querySelector('#nxtBtn').onclick = ()=>{
-                        $.createSum(id, address);
+                        isMixed ? $.mixedCourse():$.createSum(id,address)
                     }
                     ;
                     document.querySelector("#btn").disabled = true;
@@ -462,13 +494,13 @@ CosmicMath = {
                 document.querySelectorAll("#response").forEach((l)=>{
                     l.disabled = true
                 }
-                )) : (output = 'correct');
+                ), (document.querySelector("#nxtBtn").onclick = ()=>{isMixed ? $.mixedCourse():$.createSum(id,address)})) : (output = 'correct');
             } else
                 (actionRequired) ? (document.querySelector('#a100').innerHTML = `<div id="d100" class="wrong"><span id="s100">Wrong</span><button id="nxtBtn">See answer</button></div>`,
                 (document.querySelector('#nxtBtn').onclick = ()=>{
                     document.querySelector('#nxtBtn').innerHTML = 'Next';
                     document.querySelector('#nxtBtn').onclick = ()=>{
-                        $.createSum(id, address);
+                        isMixed ? $.mixedCourse():$.createSum(id,address);
                     }
                     ;
                     document.querySelector("#btn").disabled = true;
@@ -526,7 +558,7 @@ CosmicMath = {
         } else {
             helpcontent = $.appHelp[addr.join('_')].content;
         }
-        document.querySelector('#appName').innerHTML = input + `<div title="Show help and comments for the sum." style="margin:auto;width:fit-content;height:fit-content;"><svg viewBox="0 0 20 20" class="sumHelp"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm0 1a7 7 0 100 14 7 7 0 000-14zm0 10.5a.75.75 0 110 1.5.75.75 0 010-1.5zm0-8a2.5 2.5 0 011.65 4.38l-.15.12-.22.17-.09.07-.16.15c-.33.36-.53.85-.53 1.61a.5.5 0 01-1 0 3.2 3.2 0 011.16-2.62l.25-.19.12-.1A1.5 1.5 0 0010 6.5c-.83 0-1.5.67-1.5 1.5a.5.5 0 01-1 0A2.5 2.5 0 0110 5.5z"></path></svg></div>`;
+        document.querySelector('#appName').innerHTML = address.split("_").splice(1).join('\t>\t') + `<div title="Show help and comments for the sum." style="margin:auto;width:fit-content;height:fit-content;"><svg viewBox="0 0 20 20" class="sumHelp"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm0 1a7 7 0 100 14 7 7 0 000-14zm0 10.5a.75.75 0 110 1.5.75.75 0 010-1.5zm0-8a2.5 2.5 0 011.65 4.38l-.15.12-.22.17-.09.07-.16.15c-.33.36-.53.85-.53 1.61a.5.5 0 01-1 0 3.2 3.2 0 011.16-2.62l.25-.19.12-.1A1.5 1.5 0 0010 6.5c-.83 0-1.5.67-1.5 1.5a.5.5 0 01-1 0A2.5 2.5 0 0110 5.5z"></path></svg></div>`;
         document.querySelector('#appName > div').setAttribute(`onclick`, `$.infoPanel(1,"${address.split('_').join(' > ')}","${helpcontent}")`);
         var appname = document.querySelector('#appName')
         appname.style.visibility = 'visible';

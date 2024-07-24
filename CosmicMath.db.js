@@ -102,11 +102,7 @@ const $db = {
       var a = $.random(100, true, 0);
       var b = $.random(100, true, 0);
       this.answer = a - b;
-      if (a >= b) {
-        return `${a} - ${b}`;
-      } else {
-        return `${b} - ${a}`;
-      }
+      return `${a} - ${b}`;
     },
     answer: null,
     interface: function (name, address) {
