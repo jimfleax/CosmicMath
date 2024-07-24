@@ -252,7 +252,7 @@ CosmicMath = {
             a.innerHTML = '<span id="mainBoard"> </span>';
             a.append(el);
             option = document.querySelector('#course > button');
-
+            localStorage['cm_address'] = 'Home';
             $.beta.render(true);
             app100 = document.querySelector('#app')
             app100.addEventListener('dblclick', function() {
