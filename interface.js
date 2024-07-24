@@ -222,6 +222,13 @@ var rand_inverval_div = (min,max,step) => {
     max-=(max%step);
     return step*Math.round(Math.random()*max/step);
 };
+function randInterval(min, max, ...exclude) {
+    var val = [];
+    for (i=min;i<=max;i++) {
+        exclude.includes(i) || val.push(i);
+    };
+    return val[$.random(val.length-1,true)];
+}
 function recur(decimal) {
     const before_point = decimal.split(".")[0];
     const after_point = decimal.split(".")[1];

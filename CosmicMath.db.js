@@ -3020,11 +3020,11 @@ const $db = {
   Home_Simultaneousequations_Type4: {
     question: function () {
       var a = $.random(5, true, 0, 1);
-      var b = $.random(10, true, 0, 1)-5;
+      var b = randInterval(-5,5,0,1);
       var x = $.random(5, true, 0);
       var y = $.random(5, true, 0);
       var m = $.random(5, true, 0);
-      var n = $.random(10, true, 0) - 5;
+      var n = randInterval(-5,5,0);
       var first_rhs = a ** x + b ** y;
       var first_lhs = `${a}<sup>x</sup> ${putSign(b)}<sup>y</sup>`;
       var sec_rhs = m * x + n * y;
@@ -3097,11 +3097,11 @@ const $db = {
   Home_Simultaneousequations_Type5: {
     question: function () {
       var a = $.random(5, true, 0, 1);
-      var b = $.random(10, true, 0, 1)-5;
+      var b = randInterval(-5,5,0,1);
       var x = $.random(5, true, 0);
       var y = $.random(5, true, 0);
       var m = $.random(5, true, 0);
-      var n = $.random(10, true, 0)-5;
+      var n = randInterval(-5,5,0);
       var first_rhs = a ** x + b * y;
       var first_lhs = `${a}<sup>x</sup> ${putSign(b)}y`;
       var sec_rhs = m ** y + n * x;
