@@ -249,3 +249,4 @@ var parseVal = (val) => {
     };
     return val;
 };
+var putSign = (num) => (num >= 0) ? `+ ${formatCoef(num)}` : `- ${formatCoef(-num)}`;
