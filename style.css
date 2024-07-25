@@ -248,6 +248,7 @@
     box-shadow: 1px 1px 2px -2px #acacac2e;
     border-radius: 10px;
     padding: 1vh 2vh;
+    display: flex;
     position: absolute;
     top: 2%;
     left: 0;
@@ -890,4 +891,39 @@ svg#fluent:hover {
 
 svg#fluent.active {
     animation: beat 1500ms infinite cubic-bezier(0.55, -0.19, 0.76, 0.95) running forwards;
+}
+
+svg.github {
+    padding: 7px;
+    margin-block: auto;
+    display: block;
+    border-radius: 50%;
+    transition: 400ms;
+    fill: #7986CB;
+}
+
+svg.github:hover {
+    background: #020b401c;
+    fill: #3F51B5;
+}
+
+div#links {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+img.jimfleax {
+    width: 25px;
+    height: 25px;
+    padding: 7px;
+    filter: opacity(0.7);
+    image-rendering: pixelated;
+    border-radius: 50%;
+    transition: 400ms;
+}
+
+img.jimfleax:hover {
+    background: #020b401c;
+    filter: none;
 }
