@@ -109,7 +109,7 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 
 ## 📄 License
 
-The use of this software is governed by the [CosmicMath License](LICENSE).
+The use of this software is governed by the [CosmicMath License](LICENSE.md).
 
 ---
 
