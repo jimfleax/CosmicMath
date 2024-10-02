@@ -37,6 +37,7 @@ CosmicMath = {
         if (e.which === 13) {
           document.querySelector("#submitLogin").click();
         }
+      }
     },
     processData: function (username) {
       if (username != "") {
