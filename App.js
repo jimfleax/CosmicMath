@@ -320,14 +320,6 @@ CosmicMath = {
       option = document.querySelector("#course > button");
       localStorage["cm_address"] = "Home";
       $.beta.render(true);
-      app100 = document.querySelector("#app");
-      app100.addEventListener("dblclick", function () {
-        $.infoPanel(
-          1,
-          "CosmicMath",
-          "Introducing the ultimate CosmicMath app which will help you build lightning-fast calculation speed and internalize mathematical concepts. <br><br>CosmicMath algorithmically-generates unlimited sums for you to practice regularly and familiarize yourself with numbers and master mathematics. It improves your meta-skills such as calculation speed and builds mathematical intuition.<br><br>The CosmicMath interface has been designed with utmost care for you, priortizing immersive experience and responsiveness. You will find it easier to focus with this minimal and responsive user-interface.<br><br>Introducing Fluent Mode, designed to help you solve problems more efficiently by streamlining the process. With Fluent Mode, there's no need to manually submit your answers—once you input the correct answer, it's automatically submitted, allowing you to move on to the next problem without delay. This feature not only saves time but also enables a smoother and faster problem-solving experience.<br><br>Since the app is yet to reach a stable functional stage, often (hopefully rarely) the sum generates a wrong answer due to bugs in the algorithm - to fix this and ensure the app is generating correct answer I have created a shortcut to see the answer (to be used rarely when you have a doubt regarding the answer). To use this, type <code>jim.ans</code> in any of the input blanks and submit.<br><br>I would appreciate any feedback regarding the UI or queries regarding errors. This app is still under development.<br><br> Please note that CosmicMaths is being optimized to aid IPM aspirants to improve mental mathematical skills. Some updates have been made and more are coming up!! <br><br>- Developer [Reetabrata Bhandari] [ReetUI]"
-        );
-      });
       eventlist = document
         .querySelector("#appName1")
         .addEventListener("click", function () {
