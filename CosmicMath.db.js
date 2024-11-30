@@ -3334,7 +3334,7 @@ const $db = {
 
       this.answer = area;
       return (
-        `If you join the points ${coordinates.split(",").pop() + " and " + coordinates.slice(-1)[0]} to make a polygon, what will be the area?`
+        `If you join the points ${coordinates.toString().split(",").pop() + " and " + coordinates.slice(-1)[0]} to make a polygon, what will be the area?`
       );
     },
     answer: null,
