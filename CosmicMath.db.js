@@ -3175,11 +3175,13 @@ const $db = {
   Home_CoordinateGeometry_Polygonarea_Level1: {
     question: function () {
       var a = $.random(5, true, 0, 1, 2);
-      coordinates = [];
+      var coordinates = [];
+      var points;
       for (i = a; i >= 0; --i) {
         coordinates.push([$.random(20, true) - 10, $.random(20, true) - 10]);
       }
       coordinates = new Coordinates(...coordinates);
+      points = coordinates;
       var forwardSum = 0;
       var backwardSum = 0;
       for (i = 0; i < coordinates.length; i++) {
