@@ -497,7 +497,7 @@ CosmicMath = {
     ...((help)=>{
       return {
         Home_CoordinateGeometry_Polygonarea_Level1: {
-          conent: help
+          content: help
         },
         Home_CoordinateGeometry_Polygonarea_Level2: {
           content:help
