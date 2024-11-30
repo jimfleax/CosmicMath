@@ -3336,7 +3336,7 @@ const $db = {
 
       this.answer = area;
       return (
-        `If you join the points ${new Coordinates(points.slice(undefined,-1)) + " and " + new Coordinates(coordinates.points.slice(-1)[0])} to make a polygon, what will be the area?`
+        `If you join the points ${new Coordinates(points.slice(undefined,-1)).toString() + " and " + new Coordinates(coordinates.points.slice(-1)[0])} to make a polygon, what will be the area?`
       );
     },
     answer: null,
