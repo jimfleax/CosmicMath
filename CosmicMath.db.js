@@ -3334,7 +3334,7 @@ const $db = {
 
       this.answer = area;
       return (
-        "What is the area of the polygon with vertices " + coordinates + "?"
+        `If you join the points ${coordinates.split(",")} to make a polygon, what will be the area?`
       );
     },
     answer: null,
