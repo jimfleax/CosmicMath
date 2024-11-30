@@ -495,69 +495,12 @@ CosmicMath = {
         "Enter the roots in the format <code>(ax+b),(cx+d),(ex+f)</code>",
     },
     ...(() => {
-      const help = `You can use the shoelace formula to calculate the area of any polygon with the coordinates of its vertices. Here is the formula:<br><br>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <mrow>
-            <mi>A</mi>
-            <mo>=</mo>
-            <mfrac linethickness="0">
-              <mrow>
-                <mo>1</mo>
-                <mfrac>
-                  <mrow><mo>2</mo></mrow>
-                </mfrac>
-              </mrow>
-              <mrow>
-                <mo>|</mo>
-                <mrow>
-                  <msup>
-                    <mi>&#8721;</mi>
-                    <mrow>
-                      <mi>i</mi>
-                      <mo>=</mo>
-                      <mi>1</mi>
-                      <mo>&#8290;</mo>
-                      <mi>n</mi>
-                    </mrow>
-                  </msup>
-                  <mrow>
-                    <mo>(</mo>
-                    <mi>x</mi>
-                    <msub><mi>i</mi></msub>
-                    <mi>y</mi>
-                    <msub><mi>i+1</mi></msub>
-                    <mo>-</mo>
-                    <mi>x</mi>
-                    <msub><mi>i+1</mi></msub>
-                    <mi>y</mi>
-                    <msub><mi>i</mi></msub>
-                    <mo>)</mo>
-                  </mrow>
-                  <mo>+</mo>
-                  <mrow>
-                    <mi>x</mi>
-                    <msub><mi>n</mi></msub>
-                    <mi>y</mi>
-                    <msub><mi>1</mi></msub>
-                    <mo>-</mo>
-                    <mi>x</mi>
-                    <msub><mi>1</mi></msub>
-                    <mi>y</mi>
-                    <msub><mi>n</mi></msub>
-                  </mrow>
-                </mrow>
-                <mo>|</mo>
-              </mrow>
-            </mfrac>
-          </mrow>
-        </math>`;
-    
+      const help = `You can use the shoelace formula to calculate the area of any polygon with the coordinates of its vertices. Here is the formula:<br><br> <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>A</mi> <mo>=</mo> <mfrac linethickness="0"> <mrow> <mo>1</mo> <mfrac> <mrow><mo>2</mo></mrow> </mfrac> </mrow> <mrow> <mo>|</mo> <mrow> <msup> <mi>&#8721;</mi> <mrow> <mi>i</mi> <mo>=</mo> <mi>1</mi> <mo>&#8290;</mo> <mi>n</mi> </mrow> </msup> <mrow> <mo>(</mo> <mi>x</mi> <msub><mi>i</mi></msub> <mi>y</mi> <msub><mi>i+1</mi></msub> <mo>-</mo> <mi>x</mi> <msub><mi>i+1</mi></msub> <mi>y</mi> <msub><mi>i</mi></msub> <mo>)</mo> </mrow> <mo>+</mo> <mrow> <mi>x</mi> <msub><mi>n</mi></msub> <mi>y</mi> <msub><mi>1</mi></msub> <mo>-</mo> <mi>x</mi> <msub><mi>1</mi></msub> <mi>y</mi> <msub><mi>n</mi></msub> </mrow> </mrow> <mo>|</mo> </mrow> </mfrac> </mrow> </math>`;
       const keys = [
         "Home_CoordinateGeometry_Polygonarea_Level1",
         "Home_CoordinateGeometry_Polygonarea_Level2",
         "Home_CoordinateGeometry_Polygonarea_Level3",
       ];
-    
       return Object.fromEntries(keys.map(key => [key, { content: help }]));
     })()    
     
