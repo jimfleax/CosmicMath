@@ -108,7 +108,9 @@ CosmicMath = {
       "Topics.Statistics.Geometric distribution",
       "Topics.Logarithms.Level 1",
       "Topics.Logarithms.Level 2",
-      "Topics.Coordinate Geometry.Polygon area"
+      "Topics.Coordinate Geometry.Polygon area.Level 1",
+      "Topics.Coordinate Geometry.Polygon area.Level 2",
+      "Topics.Coordinate Geometry.Polygon area.Level 3"
     ],
   },
   beta: {

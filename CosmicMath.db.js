@@ -3015,16 +3015,16 @@ const $db = {
         }
       });
       $$[0].outerHTML = questionArr;
-    }
+    },
   },
   Home_Simultaneousequations_Type4: {
     question: function () {
       var a = $.random(5, true, 0, 1);
-      var b = randInterval(-5,5,0,1);
+      var b = randInterval(-5, 5, 0, 1);
       var x = $.random(5, true, 0);
       var y = $.random(5, true, 0);
       var m = $.random(5, true, 0);
-      var n = randInterval(-5,5,0);
+      var n = randInterval(-5, 5, 0);
       var first_rhs = a ** x + b ** y;
       var first_lhs = `${a}<sup>x</sup> ${putSign(b)}<sup>y</sup>`;
       var sec_rhs = m * x + n * y;
@@ -3092,16 +3092,16 @@ const $db = {
         }
       });
       $$[0].outerHTML = questionArr;
-    }
+    },
   },
   Home_Simultaneousequations_Type5: {
     question: function () {
       var a = $.random(5, true, 0, 1);
-      var b = randInterval(-5,5,0,1);
+      var b = randInterval(-5, 5, 0, 1);
       var x = $.random(5, true, 0);
       var y = $.random(5, true, 0);
       var m = $.random(5, true, 0);
-      var n = randInterval(-5,5,0);
+      var n = randInterval(-5, 5, 0);
       var first_rhs = a ** x + b * y;
       var first_lhs = `${a}<sup>x</sup> ${putSign(b)}y`;
       var sec_rhs = m ** y + n * x;
@@ -3170,26 +3170,172 @@ const $db = {
         }
       });
       $$[0].outerHTML = questionArr;
-    }
+    },
   },
-  Home_CoordinateGeometry_Polygonarea: {
+  Home_CoordinateGeometry_Polygonarea_Level1: {
     question: function () {
-      var a = $.random(9, true,0,1,2,3);
+      var a = $.random(5, true, 0, 1, 2);
       coordinates = [];
-      for (i=a;i>=0;--i) {
-        coordinates.push([$.random(9, true),$.random(9, true)]);
-      };
+      for (i = a; i >= 0; --i) {
+        coordinates.push([$.random(20, true) - 10, $.random(20, true) - 10]);
+      }
       coordinates = new Coordinates(...coordinates);
       var forwardSum = 0;
-      var backwardSum = 0
-      for (i=0;i<(coordinates.length);i++) {
-        forwardSum += coordinates.getX()[i]*coordinates.getY()[(i+1 >= coordinates.length)?(0):(i+1)];
-        backwardSum += coordinates.getX()[(i+1 >= coordinates.length)?(0):(i+1)]*coordinates.getY()[i];
-      };
-      area = (Math.abs(forwardSum-backwardSum))/2;
+      var backwardSum = 0;
+      for (i = 0; i < coordinates.length; i++) {
+        forwardSum +=
+          coordinates.getX()[i] *
+          coordinates.getY()[i + 1 >= coordinates.length ? 0 : i + 1];
+        backwardSum +=
+          coordinates.getX()[i + 1 >= coordinates.length ? 0 : i + 1] *
+          coordinates.getY()[i];
+      }
+      area = Math.abs(forwardSum - backwardSum) / 2;
 
       this.answer = area;
-      return "What is the area of the polygon with vertices " + coordinates + "?";
+      return (
+        "What is the area of the polygon with vertices " + coordinates + "?"
+      );
+    },
+    answer: null,
+    interface: function (name, address) {
+      var $$ = [];
+      $$[0] = new Text(this.question(), "");
+      $$[1] = new Break();
+      $$[2] = new Input();
+      $$[3] = new Button();
+      ans = this.answer;
+      $$.forEach(function (e) {
+        document.querySelector("#appMain").append(e);
+        switch (e.localName) {
+          case "input":
+            e.onkeypress = function (i) {
+              console.log(i);
+              if (i.which == 13) {
+                $.submit(
+                  name,
+                  address,
+                  parseFloat(document.querySelector("#response").value).toFixed(
+                    2
+                  ),
+                  ans
+                );
+              }
+            };
+            break;
+          case "button":
+            e.onclick = function () {
+              $.submit(
+                name,
+                address,
+                parseFloat(document.querySelector("#response").value).toFixed(
+                  2
+                ),
+                ans
+              );
+            };
+            break;
+          default:
+            null;
+            break;
+        }
+      });
+    },
+  },
+  Home_CoordinateGeometry_Polygonarea_Level2: {
+    question: function () {
+      var a = $.random(9, true, 0, 1, 2);
+      coordinates = [];
+      for (i = a; i >= 0; --i) {
+        coordinates.push([$.random(20, true) - 10, $.random(20, true) - 10]);
+      }
+      coordinates = new Coordinates(...coordinates);
+      var forwardSum = 0;
+      var backwardSum = 0;
+      for (i = 0; i < coordinates.length; i++) {
+        forwardSum +=
+          coordinates.getX()[i] *
+          coordinates.getY()[i + 1 >= coordinates.length ? 0 : i + 1];
+        backwardSum +=
+          coordinates.getX()[i + 1 >= coordinates.length ? 0 : i + 1] *
+          coordinates.getY()[i];
+      }
+      area = Math.abs(forwardSum - backwardSum) / 2;
+
+      this.answer = area;
+      return (
+        "What is the area of the polygon with vertices " + coordinates + "?"
+      );
+    },
+    answer: null,
+    interface: function (name, address) {
+      var $$ = [];
+      $$[0] = new Text(this.question(), "");
+      $$[1] = new Break();
+      $$[2] = new Input();
+      $$[3] = new Button();
+      ans = this.answer;
+      $$.forEach(function (e) {
+        document.querySelector("#appMain").append(e);
+        switch (e.localName) {
+          case "input":
+            e.onkeypress = function (i) {
+              console.log(i);
+              if (i.which == 13) {
+                $.submit(
+                  name,
+                  address,
+                  parseFloat(document.querySelector("#response").value).toFixed(
+                    2
+                  ),
+                  ans
+                );
+              }
+            };
+            break;
+          case "button":
+            e.onclick = function () {
+              $.submit(
+                name,
+                address,
+                parseFloat(document.querySelector("#response").value).toFixed(
+                  2
+                ),
+                ans
+              );
+            };
+            break;
+          default:
+            null;
+            break;
+        }
+      });
+    },
+  },
+  Home_CoordinateGeometry_Polygonarea_Level3: {
+    question: function () {
+      var a = $.random(9, true, 0, 1, 2, 3);
+      coordinates = [];
+      for (i = a; i >= 0; --i) {
+        coordinates.push([$.random(40, true) - 20, $.random(40, true) - 20]);
+      }
+      coordinates = new Coordinates(...coordinates);
+      var forwardSum = 0;
+      var backwardSum = 0;
+      for (i = 0; i < coordinates.length; i++) {
+        forwardSum +=
+          coordinates.getX()[i] *
+          coordinates.getY()[i + 1 >= coordinates.length ? 0 : i + 1];
+        backwardSum +=
+          coordinates.getX()[i + 1 >= coordinates.length ? 0 : i + 1] *
+          coordinates.getY()[i];
+      }
+      area = Math.abs(forwardSum - backwardSum) / 2;
+
+      this.answer = area;
+      return (
+        "What is the area of the polygon with vertices " + coordinates + "?"
+      );
     },
     answer: null,
     interface: function (name, address) {
