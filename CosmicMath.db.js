@@ -3315,11 +3315,13 @@ const $db = {
   Home_CoordinateGeometry_Polygonarea_Level3: {
     question: function () {
       var a = $.random(9, true, 0, 1, 2);
-      coordinates = [];
+      var coordinates = [];
+      var points;
       for (i = a; i >= 0; --i) {
         coordinates.push([$.random(40, true) - 20, $.random(40, true) - 20]);
       }
       coordinates = new Coordinates(...coordinates);
+      points = coordinates.points;
       var forwardSum = 0;
       var backwardSum = 0;
       for (i = 0; i < coordinates.length; i++) {
@@ -3334,7 +3336,7 @@ const $db = {
 
       this.answer = area;
       return (
-        `If you join the points ${coordinates.toString().split(",").pop() + " and " + coordinates.toString().slice(-1)[0]} to make a polygon, what will be the area?`
+        `If you join the points ${new Coordinates(points.pop()).toString() + " and " + new Coordinates(coordinates.points.slice(-1)[0]).toString()} to make a polygon, what will be the area?`
       );
     },
     answer: null,
