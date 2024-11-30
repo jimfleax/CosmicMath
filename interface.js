@@ -80,7 +80,7 @@ class Coordinates {
         this.points = [...points];
         this.length = points.length;
         this.toString = () => {
-            return this.points.map((a)=>{return a.join(",")}).map((a,b)=>{return (b===this.length-1) ? (a.concat(")")):(b ? (a):(("("+a)))}).join("),(");
+            return this.points.map((a)=>{return a.join(",")}).map((a,b)=>{return (b===this.length-1) ? (a.concat(")")):(b ? (a):(("("+a)))}).join("), (");
         };
         this.getPoints = () =>{
             return this.points;
