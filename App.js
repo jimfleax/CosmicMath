@@ -495,7 +495,7 @@ CosmicMath = {
         "Enter the roots in the format <code>(ax+b),(cx+d),(ex+f)</code>",
     },
     ...(() => {
-      const help = `You can use the shoelace formula to calculate the area of any polygon with the coordinates of its vertices. Here is the formula:<br><br> <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" style=" font-size: 46px;"> <mi>A</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mn>2</mn> </mfrac> <mo>&#x2223;</mo> <mo>(</mo> <munderover> <mo>&#x2211;</mo> <mi>i</mi> <mo>=</mo> <mn>1</mn> <mo>&#x2026;</mo> <mi>n</mi> </munderover> <mo>(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <msub> <mi>y</mi> <mi>i+1</mi> </msub> <mo>-</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <msub> <mi>x</mi> <mi>i+1</mi> </msub> <mo>)</mo> <mo>)</mo> <mo>&#x2223;</mo> </math>`;
+      const help = `You can use the shoelace formula to calculate the area of any polygon with the coordinates of its vertices. Here is the formula:<br><br> <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" style=" font-size: 30px;"> <mi>A</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mn>2</mn> </mfrac> <mo>&#x2223;</mo> <mo>(</mo> <munderover> <mo>&#x2211;</mo> <mi>i</mi> <mo>=</mo> <mn>1</mn> <mo>&#x2026;</mo> <mi>n</mi> </munderover> <mo>(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <msub> <mi>y</mi> <mi>i+1</mi> </msub> <mo>-</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <msub> <mi>x</mi> <mi>i+1</mi> </msub> <mo>)</mo> <mo>)</mo> <mo>&#x2223;</mo> </math>`;
       const keys = [
         "Home_CoordinateGeometry_Polygonarea_Level1",
         "Home_CoordinateGeometry_Polygonarea_Level2",
