@@ -1,6 +1,24 @@
 
 var $$ = [];
+function waitForElement(selector) {
+    return new Promise((resolve) => {
+      const element = document.querySelector(selector);
+      if (element) {
+        resolve(element);
+      } else {
+        const observer = new MutationObserver(() => {
+          const element = document.querySelector(selector);
+          if (element) {
+            observer.disconnect();
+            resolve(element);
+          }
+        });
 
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+    });
+  }
+  
 class Button {
     constructor(label = 'Submit', css = '', id = 'btn') {
         this.code = function () {
