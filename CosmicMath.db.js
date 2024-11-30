@@ -3314,7 +3314,7 @@ const $db = {
   },
   Home_CoordinateGeometry_Polygonarea_Level3: {
     question: function () {
-      var a = $.random(9, true, 0, 1, 2, 3);
+      var a = $.random(9, true, 0, 1, 2);
       coordinates = [];
       for (i = a; i >= 0; --i) {
         coordinates.push([$.random(40, true) - 20, $.random(40, true) - 20]);
