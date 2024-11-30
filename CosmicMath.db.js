@@ -3203,7 +3203,7 @@ const $db = {
     answer: null,
     interface: function (name, address) {
       var $$ = [];
-      $$[0] = new Text(this.question(), "");
+      $$[0] = new Text(this.question(), "font-size: 36px;");
       $$[1] = new Break();
       $$[2] = new Input();
       $$[3] = new Button();
@@ -3275,7 +3275,7 @@ const $db = {
     answer: null,
     interface: function (name, address) {
       var $$ = [];
-      $$[0] = new Text(this.question(), "");
+      $$[0] = new Text(this.question(), "font-size: 36px;");
       $$[1] = new Break();
       $$[2] = new Input();
       $$[3] = new Button();
