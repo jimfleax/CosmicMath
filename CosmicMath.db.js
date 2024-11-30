@@ -3191,7 +3191,6 @@ const $db = {
         backwardSum +=
           coordinates.getX()[(i + 1) % coordinates.length] *
           coordinates.getY()[i];
-          console.log(i,forwardSum, backwardSum);
       }
       area = Math.abs(forwardSum - backwardSum) / 2;
       console.log(new Coordinates(...points))
@@ -3261,9 +3260,9 @@ const $db = {
       for (i = 0; i < coordinates.length; i++) {
         forwardSum +=
           coordinates.getX()[i] *
-          coordinates.getY().toString()[i + 1 >= coordinates.length ? 0 : i + 1];
+          coordinates.getY().toString()[(i + 1) % coordinates.length];
         backwardSum +=
-          coordinates.getX()[i + 1 >= coordinates.length ? 0 : i + 1] *
+          coordinates.getX()[(i + 1) % coordinates.length] *
           coordinates.getY()[i];
       }
       area = Math.abs(forwardSum - backwardSum) / 2;
@@ -3333,9 +3332,9 @@ const $db = {
       for (i = 0; i < coordinates.length; i++) {
         forwardSum +=
           coordinates.getX()[i] *
-          coordinates.getY()[i + 1 >= coordinates.length ? 0 : i + 1];
+          coordinates.getY()[(i + 1) % coordinates.length];
         backwardSum +=
-          coordinates.getX()[i + 1 >= coordinates.length ? 0 : i + 1] *
+          coordinates.getX()[(i + 1) % coordinates.length] *
           coordinates.getY()[i];
       }
       area = Math.abs(forwardSum - backwardSum) / 2;
