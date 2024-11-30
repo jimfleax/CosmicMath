@@ -3196,7 +3196,7 @@ const $db = {
 
       this.answer = area;
       return (
-        "What is the area of the polygon with vertices " + new Coordinates(points.slice(undefined,-1)) + " and " + new Coordinates(coordinates.points.slice(-1)[0]) + "?"
+        "What is the area of the polygon with vertices " + new Coordinates(...points.slice(undefined,-1)) + " and " + new Coordinates(...coordinates.points.slice(-1)[0]) + "?"
       );
     },
     answer: null,
