@@ -3193,7 +3193,7 @@ const $db = {
           coordinates.getY()[i];
       }
       area = Math.abs(forwardSum - backwardSum) / 2;
-      console.log((new Coordinates(points.slice(undefined,-1))).toString())
+      console.log(points)
       this.answer = area;
 
       return (
