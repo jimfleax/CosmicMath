@@ -3191,6 +3191,7 @@ const $db = {
         backwardSum +=
           coordinates.getX()[(i + 1) % coordinates.length] *
           coordinates.getY()[i];
+          console.log(i,forwardSum, backwardSum);
       }
       area = Math.abs(forwardSum - backwardSum) / 2;
       console.log(new Coordinates(...points))
