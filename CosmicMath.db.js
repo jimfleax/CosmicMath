@@ -3181,7 +3181,7 @@ const $db = {
         coordinates.push([$.random(20, true) - 10, $.random(20, true) - 10]);
       }
       coordinates = new Coordinates(...coordinates);
-      points = coordinates;
+      points = coordinates.points;
       var forwardSum = 0;
       var backwardSum = 0;
       for (i = 0; i < coordinates.length; i++) {
@@ -3196,7 +3196,7 @@ const $db = {
 
       this.answer = area;
       return (
-        "What is the area of the polygon with vertices " + new Coordinates(points.toString().slice(undefined,-1)) + " and " + new Coordinates(coordinates.points.toString().slice(-1)[0]) + "?"
+        "What is the area of the polygon with vertices " + new Coordinates(points.slice(undefined,-1)) + " and " + new Coordinates(coordinates.points.slice(-1)[0]) + "?"
       );
     },
     answer: null,
