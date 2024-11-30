@@ -3197,7 +3197,7 @@ const $db = {
       this.answer = area;
 
       return (
-        "What is the area of the polygon with vertices " + new Coordinates(...points.slice(undefined,-1)).toString() + " and " + new Coordinates(coordinates.points.slice(-1)[0]) + "?"
+        `If you join the points ${new Coordinates(...points.slice(undefined,-1)).toString() + " and (" + (coordinates.points.slice(-1)[0].join(","))}) to make a polygon, what will be the area?`
       );
     },
     answer: null,
@@ -3248,11 +3248,13 @@ const $db = {
   Home_CoordinateGeometry_Polygonarea_Level2: {
     question: function () {
       var a = $.random(9, true, 0, 1, 2);
-      coordinates = [];
+      var coordinates = [];
+      var points = [];
       for (i = a; i >= 0; --i) {
         coordinates.push([$.random(20, true) - 10, $.random(20, true) - 10]);
       }
       coordinates = new Coordinates(...coordinates);
+      points = coordinates.points;
       var forwardSum = 0;
       var backwardSum = 0;
       for (i = 0; i < coordinates.length; i++) {
@@ -3267,7 +3269,7 @@ const $db = {
 
       this.answer = area;
       return (
-        "What is the area of the polygon with vertices " + coordinates + "?"
+        `If you join the points ${new Coordinates(...points.slice(undefined,-1)).toString() + " and (" + (coordinates.points.slice(-1)[0].join(","))}) to make a polygon, what will be the area?`
       );
     },
     answer: null,
@@ -3339,7 +3341,7 @@ const $db = {
 
       this.answer = area;
       return (
-        `If you join the points ${new Coordinates(points.slice(undefined,-1)) + " and " + new Coordinates(coordinates.points.slice(-1)[0])} to make a polygon, what will be the area?`
+        `If you join the points ${new Coordinates(...points.slice(undefined,-1)).toString() + " and (" + (coordinates.points.slice(-1)[0].join(","))}) to make a polygon, what will be the area?`
       );
     },
     answer: null,
