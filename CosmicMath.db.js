@@ -3255,7 +3255,7 @@ const $db = {
       for (i = 0; i < coordinates.length; i++) {
         forwardSum +=
           coordinates.getX()[i] *
-          coordinates.getY()[i + 1 >= coordinates.length ? 0 : i + 1];
+          coordinates.getY().toString()[i + 1 >= coordinates.length ? 0 : i + 1];
         backwardSum +=
           coordinates.getX()[i + 1 >= coordinates.length ? 0 : i + 1] *
           coordinates.getY()[i];
@@ -3336,7 +3336,7 @@ const $db = {
 
       this.answer = area;
       return (
-        `If you join the points ${new Coordinates(points.pop()) + " and " + new Coordinates(coordinates.points.slice(-1)[0])} to make a polygon, what will be the area?`
+        `If you join the points ${new Coordinates(points.slice(undefined,-1)) + " and " + new Coordinates(coordinates.points.slice(-1)[0])} to make a polygon, what will be the area?`
       );
     },
     answer: null,
