@@ -75,6 +75,24 @@ class Select {
         return this.code();
     }
 }
+class Coordinates {
+    constructor(...points) {
+        this.points = [...points];
+        this.length = points.length;
+        this.toString = () => {
+            return this.points.map((a)=>{return a.join(",")}).map((a,b)=>{return (b===this.length-1) ? (a.concat(")")):(b ? (a):(("("+a)))}).join("),(");
+        };
+        this.getPoints = () =>{
+            return this.points;
+        }
+        this.getX = () =>{
+            return this.points.map((a)=>{return a[0]});
+        };
+        this.getY = () => {
+            return this.points.map((a)=>{return a[1]});
+        };
+    }
+}
 var gcd = (a, b) => {
     if (!b)
         return a;

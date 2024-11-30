@@ -3171,7 +3171,71 @@ const $db = {
       });
       $$[0].outerHTML = questionArr;
     }
-  }
+  },
+  Home_CoordinateGeometry_Polygonarea: {
+    question: function () {
+      var a = $.random(9, true,0,1,2,3);
+      coordinates = [];
+      for (i=a;i>=0;--i) {
+        coordinates.push([$.random(9, true),$.random(9, true)]);
+      };
+      coordinates = new Coordinates(...coordinates);
+      var forwardSum = 0;
+      var backwardSum = 0
+      for (i=0;i<(coordinates.length);i++) {
+        forwardSum += coordinates.getX()[i]*coordinates.getY()[(i+1 >= coordinates.length)?(0):(i+1)];
+        backwardSum += coordinates.getX()[(i+1 >= coordinates.length)?(0):(i+1)]*coordinates.getY()[i];
+      };
+      area = (Math.abs(forwardSum-backwardSum))/2;
+
+      this.answer = area;
+      return "What is the area of the polygon with vertices " + coordinates + "?";
+    },
+    answer: null,
+    interface: function (name, address) {
+      var $$ = [];
+      $$[0] = new Text(this.question(), "");
+      $$[1] = new Break();
+      $$[2] = new Input();
+      $$[3] = new Button();
+      ans = this.answer;
+      $$.forEach(function (e) {
+        document.querySelector("#appMain").append(e);
+        switch (e.localName) {
+          case "input":
+            e.onkeypress = function (i) {
+              console.log(i);
+              if (i.which == 13) {
+                $.submit(
+                  name,
+                  address,
+                  parseFloat(document.querySelector("#response").value).toFixed(
+                    2
+                  ),
+                  ans
+                );
+              }
+            };
+            break;
+          case "button":
+            e.onclick = function () {
+              $.submit(
+                name,
+                address,
+                parseFloat(document.querySelector("#response").value).toFixed(
+                  2
+                ),
+                ans
+              );
+            };
+            break;
+          default:
+            null;
+            break;
+        }
+      });
+    },
+  },
 };
 
 // create an object for polynomials. that will solve the issue of algebraic manipulation.
