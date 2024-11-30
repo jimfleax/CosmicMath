@@ -3193,11 +3193,11 @@ const $db = {
           coordinates.getY()[i];
       }
       area = Math.abs(forwardSum - backwardSum) / 2;
-      console.log(points)
+      console.log(new Coordinates(...points))
       this.answer = area;
 
       return (
-        "What is the area of the polygon with vertices " + new Coordinates(...points.slice(undefined,-1)).toString() + " and " + new Coordinates(...coordinates.points.slice(-1)[0]) + "?"
+        "What is the area of the polygon with vertices " + new Coordinates(...points.slice(undefined,-1)).toString() + " and " + new Coordinates(coordinates.points.slice(-1)[0]) + "?"
       );
     },
     answer: null,
