@@ -3334,13 +3334,13 @@ const $db = {
 
       this.answer = area;
       return (
-        `If you join the points ${coordinates.split(",")} to make a polygon, what will be the area?`
+        `If you join the points ${coordinates.split(",").pop() + " and " + coordinates.slice(-1)[0]} to make a polygon, what will be the area?`
       );
     },
     answer: null,
     interface: function (name, address) {
       var $$ = [];
-      $$[0] = new Text(this.question(), "");
+      $$[0] = new Text(this.question(), "font-size: 36px;");
       $$[1] = new Break();
       $$[2] = new Input();
       $$[3] = new Button();
