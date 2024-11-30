@@ -3260,7 +3260,7 @@ const $db = {
       for (i = 0; i < coordinates.length; i++) {
         forwardSum +=
           coordinates.getX()[i] *
-          coordinates.getY().toString()[(i + 1) % coordinates.length];
+          coordinates.getY()[(i + 1) % coordinates.length];
         backwardSum +=
           coordinates.getX()[(i + 1) % coordinates.length] *
           coordinates.getY()[i];
