@@ -23,15 +23,14 @@ CosmicMath = {
         return false;
       };
       document.querySelector("body").append(((el)=>{
-        document.querySelector("#loginPanel > input").onkeypress = (e) =>{
-          if (e.which === 13) {
-            document.querySelector("#submitLogin").click();
-          }
-        };
       el.innerHTML = '<div title="CosmicMath" id="app"><span style=" margin: auto; ">CosmicMath</span><svg onclick="CosmicMath.launchApp()" class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style=" width: 35px; fill: #ffffffdb; margin: auto; margin-left: 12px; "><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"></path></svg></div>';
       return el;
       })(document.createElement("div")));
-      
+      document.querySelector("#loginPanel > input").onkeypress = (e) =>{
+        if (e.which === 13) {
+          document.querySelector("#submitLogin").click();
+        }
+      };
     },
     processData: function (username) {
       if (username != "") {
