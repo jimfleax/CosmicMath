@@ -149,6 +149,21 @@ class Frac {
         return this.decimal;
     }
 }
+var toFrac = (sign=0,a, b) => {
+  return `
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mo>${!sign || "-"}</mo>
+  <mfrac>
+    <mi>${a}</mi>
+    <mi>${b}</mi>
+  </mfrac>
+</math>
+
+    `;
+};
+Array.prototype.any = function() {
+    return this[$.random(this.length-1, true)];
+}
 var frac = (numerator = null, denominator = null, decimal = null) => {
     try {
         if (!numerator && !denominator) {

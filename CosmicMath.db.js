@@ -3389,6 +3389,116 @@ const $db = {
       });
     },
   },
+  Home_Trigonometry_Trigonometricsolutions: {
+    question: function () {
+      const values = [{
+        text: "-1",
+        value: -1
+      }, {
+        text: toFrac(1, "√3", "2"),
+        value: -Math.sqrt(3)/2
+      }, {
+        text: toFrac(1, "√2", "2"),
+        value: -Math.sqrt(2)/2
+      }, {
+        text: toFrac(1, "1", "2"),
+        value: -1/2
+      }, {
+        text: "0",
+        value: 0
+      }, {
+        text: toFrac(0, "1", "2"),
+        value: 1/2
+      }, {
+        text: toFrac(0, "√2", "2"),
+        value: Math.sqrt(2)/2
+      }, {
+        text: toFrac(0, "√3", "2"),
+        value: Math.sqrt(3)/2
+      }, {
+        text: "1",
+        value: 1
+      }].any();
+      const π = Math.PI;
+      var range = [90, 180, 270, 360, 540, 720, 1080].any();
+      const isNegative = !$.random(1,true);
+      var rangeT = (isNegative) ? (`[-${range}, ${range}]`):(`[0,${range}]`);
+      const functions = ["sinθ"].any();
+      var solutions = [];
+      var positiveSolutions = [];
+      var negativeSolutions = [];
+        if (functions === "sinθ") {
+          var iterator = (isNegative)
+          var isDone = false;
+          while (true) {
+            var value = (iterator*180) + Math.pow(-1, iterator)*initialVal;
+            if (value > range) {
+              break;
+            }
+            positiveSolutions.push(value);
+            iterator++;
+          }
+          while (true) {
+            var value = (iterator*180) + Math.pow(-1, iterator)*initialVal;
+            if (value < -range) {
+              break;
+            }
+            negativeSolutions.push(value);
+            iterator--;
+          }
+          isNegative ? solutions.push(...negativeSolutions,...positiveSolutions):solutions.push(...positiveSolutions);
+
+        }
+      this.answer = solutions.sort().join(",");
+      return (
+        `Find all the values of θ when ${functions}=${values}, given that it is in the range ${rangeT}.`
+      );
+    },
+    answer: null,
+    interface: function (name, address) {
+      var $$ = [];
+      $$[0] = new Text(this.question(), "font-size: 36px;");
+      $$[1] = new Break();
+      $$[2] = new Input();
+      $$[3] = new Button();
+      ans = this.answer;
+      $$.forEach(function (e) {
+        document.querySelector("#appMain").append(e);
+        switch (e.localName) {
+          case "input":
+            e.onkeypress = function (i) {
+              console.log(i);
+              if (i.which == 13) {
+                $.submit(
+                  name,
+                  address,
+                  parseFloat(document.querySelector("#response").value).toFixed(
+                    2
+                  ),
+                  ans
+                );
+              }
+            };
+            break;
+          case "button":
+            e.onclick = function () {
+              $.submit(
+                name,
+                address,
+                parseFloat(document.querySelector("#response").value).toFixed(
+                  2
+                ),
+                ans
+              );
+            };
+            break;
+          default:
+            null;
+            break;
+        }
+      });
+    },
+  },
 };
 
 // create an object for polynomials. that will solve the issue of algebraic manipulation.
