@@ -3427,6 +3427,7 @@ const $db = {
       var solutions = [];
       var positiveSolutions = [];
       var negativeSolutions = [];
+      var initialVal = Math.asin(values.value*(180/Math.PI));
         if (functions === "sinθ") {
           var iterator = (isNegative)
           var isDone = false;
@@ -3451,7 +3452,7 @@ const $db = {
         }
       this.answer = solutions.sort().join(",");
       return (
-        `Find all the values of θ when ${functions}=${values}, given that it is in the range ${rangeT}.`
+        `Find all the values of θ when ${functions}=${values.text}, given that it is in the range ${rangeT}.`
       );
     },
     answer: null,
