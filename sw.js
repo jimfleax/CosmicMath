@@ -4,8 +4,8 @@ const CACHE_EXPIRATION = 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/main.js',
+  '/style.css',
+  '/App.js',
   '/CosmicMath.db.js',
   '/interface.js',
   '/HappyDisplay-Bold.woff2',
