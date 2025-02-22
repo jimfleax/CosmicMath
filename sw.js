@@ -61,20 +61,21 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    })
-  );
-
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      cache.keys().then((keys) => {
-        keys.forEach((key) => {
-          cache.match(key).then((response) => {
-            if (response) {
-              const date = new Date(response.headers.get('date'));
-              if (Date.now() - date.getTime() > CACHE_EXPIRATION) {
-                cache.delete(key);
+    }).then(() => {
+      caches.open(CACHE_NAME).then((cache) => {
+        cache.keys().then((keys) => {
+          keys.forEach((key) => {
+            cache.match(key).then((response) => {
+              if (response) {
+                const dateHeader = response.headers.get('Date');
+                if (dateHeader) {
+                  const date = new Date(dateHeader);
+                  if (Date.now() - date.getTime() > CACHE_EXPIRATION) {
+                    cache.delete(key);
+                  }
+                }
               }
-            }
+            });
           });
         });
       });
