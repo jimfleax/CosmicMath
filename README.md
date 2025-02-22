@@ -16,6 +16,7 @@ CosmicMath is designed to help students improve their mathematical skills and bu
 - **Wide Topic Coverage:** Over 45 different types of sums to challenge and improve your skills.
 - **User-Friendly Interface:** A minimal and responsive design that helps you focus on learning.
 - **Fluent Mode:** Solve sums fluently without extra steps – automatically proceed to the next sum when you enter the correct answer.
+- **Works Offline in PWA:** The neccesary files are cached to your browser so that you can practice sums offline.
 
 ---
 
