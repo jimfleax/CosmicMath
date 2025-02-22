@@ -1,23 +1,83 @@
-{
-  "name": "CosmicMath",
-  "short_name": "CosmicMath",
-  "description": "Introducing the ultimate CosmicMath app, housing 45+ different types of sums, which will help you build lightning-fast calculation speed and internalize mathematical concepts.",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "/icons/apple-touch-icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/apple-touch-icon.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
+const CACHE_NAME = 'cosmicmath-cache-v1';
+const CACHE_EXPIRATION = 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
+
+const FILES_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/main.js',
+  '/CosmicMath.db.js',
+  '/interface.js',
+  '/HappyDisplay-Bold.woff2',
+  '/HappyDisplay-Regular.woff2',
+  '/HappyDisplay-SemiBold.woff2',
+  '/icons/apple-touch-icon.png',
+  '/icons/favicon.ico',
+  '/icons/og-image.png',
+  '/icons/structured-data-image.png',
+  '/icons/twitter-image.png',
+  '/manifest.json'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Opened cache');
+        return cache.addAll(FILES_TO_CACHE);
+      })
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request).then((response) => {
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          return response;
+        });
+      })
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      cache.keys().then((keys) => {
+        keys.forEach((key) => {
+          cache.match(key).then((response) => {
+            if (response) {
+              const date = new Date(response.headers.get('date'));
+              if (Date.now() - date.getTime() > CACHE_EXPIRATION) {
+                cache.delete(key);
+              }
+            }
+          });
+        });
+      });
+    })
+  );
+});
