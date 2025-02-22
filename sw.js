@@ -1,6 +1,3 @@
-// service-worker.js
-
-// Cache name
 const CACHE_NAME = 'cosmicmath-cache-v1';
 const CACHE_EXPIRATION = 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
 
