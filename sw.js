@@ -1,6 +1,5 @@
 const CACHE_NAME = 'cosmicmath-cache-v1';
 const CACHE_EXPIRATION = 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
-
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
@@ -19,39 +18,65 @@ const FILES_TO_CACHE = [
   '/manifest.json'
 ];
 
+// Install event - pre-cache necessary files
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(FILES_TO_CACHE)
-          .catch((error) => {
-            console.error('Failed to cache:', error);
-          });
-      })
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await cache.addAll(FILES_TO_CACHE);
+      const now = Date.now();
+      const metadata = {};
+      FILES_TO_CACHE.forEach((url) => {
+        metadata[url] = now;
+      });
+      return cache.put('cache-metadata', new Response(JSON.stringify(metadata)));
+    })
   );
 });
 
+// Fetch event - Try network first, fallback to cache if offline
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
         if (!response || response.status !== 200 || response.type !== 'basic') {
-          return caches.match(event.request);
+          throw new Error('Bad response, fallback to cache');
         }
-        const responseToCache = response.clone();
-        caches.open(CACHE_NAME)
-          .then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
-        return response;
+        return caches.open(CACHE_NAME).then(async (cache) => {
+          const metadata = await getCacheMetadata(cache);
+          metadata[event.request.url] = Date.now();
+          cache.put(event.request, response.clone());
+          cache.put('cache-metadata', new Response(JSON.stringify(metadata)));
+          return response;
+        });
       })
-      .catch(() => {
-        return caches.match(event.request);
+      .catch(async () => {
+        const cache = await caches.open(CACHE_NAME);
+        const metadata = await getCacheMetadata(cache);
+        const cachedResponse = await cache.match(event.request);
+
+        if (cachedResponse) {
+          const cachedTime = metadata[event.request.url] || 0;
+          if (Date.now() - cachedTime > CACHE_EXPIRATION) {
+            console.log('Cache expired:', event.request.url);
+            cache.delete(event.request);
+            return fetch(event.request);
+          }
+          return cachedResponse;
+        }
+
+        return Promise.reject('No cache available');
       })
   );
 });
 
+// Helper function to retrieve cache metadata
+async function getCacheMetadata(cache) {
+  const metadataResponse = await cache.match('cache-metadata');
+  if (!metadataResponse) return {};
+  return metadataResponse.json();
+}
+
+// Activate event - Cleanup old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -62,24 +87,6 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    }).then(() => {
-      caches.open(CACHE_NAME).then((cache) => {
-        cache.keys().then((keys) => {
-          keys.forEach((key) => {
-            cache.match(key).then((response) => {
-              if (response) {
-                const dateHeader = response.headers.get('Date');
-                if (dateHeader) {
-                  const date = new Date(dateHeader);
-                  if (Date.now() - date.getTime() > CACHE_EXPIRATION) {
-                    cache.delete(key);
-                  }
-                }
-              }
-            });
-          });
-        });
-      });
     })
   );
 });
