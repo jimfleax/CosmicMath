@@ -12,6 +12,11 @@ const FILES_TO_CACHE = [
   '/HappyDisplay-Regular.woff2',
   '/HappyDisplay-SemiBold.woff2',
   '/icons/apple-touch-icon.png',
+  '/icons/favicon.ico',
+  '/icons/og-image.png',
+  '/icons/structured-data-image.png',
+  '/icons/twitter-image.png',
+  '/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
