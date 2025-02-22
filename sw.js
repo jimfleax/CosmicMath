@@ -24,7 +24,10 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(FILES_TO_CACHE);
+        return cache.addAll(FILES_TO_CACHE)
+          .catch((error) => {
+            console.error('Failed to cache:', error);
+          });
       })
   );
 });
