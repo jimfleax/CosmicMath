@@ -1491,7 +1491,7 @@ const $db = {
       var questionArr = this.question();
       $$[0] = new Text(
         this.question(),
-        "font-size:1.5em; font-family: internacional"
+        "font-size:35px; font-family: internacional"
       );
             $$[1] = new Break();
             $$[2] = new Text('What is the sum to infinity?', 'font-weight: 900; font-size: 47px; font-style: italic; font-family: georgia;');
