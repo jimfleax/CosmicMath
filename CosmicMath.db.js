@@ -1479,7 +1479,7 @@ const $db = {
       firstTerm = setofnum[0];
       sum = (a/1-r);
       this.answer = isFinite ? (a(1-Math.pow(r,n))/(1-r)) : (a/1-r);
-      return [isFinite ? `of first ${n} numbers` : `to infinity`,setofnum.map((a)=>{return Number.isInteger(a) ? a: frac(undefined, undefined, a)}).join(",").concat("...")];
+      return [(isFinite ? `of first ${n} numbers` : `to infinity`),setofnum.map((a)=>{return Number.isInteger(a) ? a: frac(undefined, undefined, a)}).join(",").concat("...")];
     },
     answer: null,
     interface: function (name, address) {
