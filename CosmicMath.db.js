@@ -1470,7 +1470,7 @@ const $db = {
       b = $.random(100, true, true),
       n = $.random(7, true, ) + 3,
       isFinite = ![$.random(1, true)];
-      r = isFinite ? $.random(6, true, 0) : $.random(1,false, 0).toFixed(1);
+      r = isFinite ? $.random(6, true, 0) : new Frac($.random(9, true, 0), $.random(9, true, 0)).decimal.toFixed(1);
       var setofnum = [];
       for (i=0;i<6;i++) {
         setofnum.push(a*Math.pow(r,i));
