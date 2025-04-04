@@ -1475,9 +1475,10 @@ const $db = {
         $.random(6, true, 0),
         frac($.random(9, true, 0), $.random(9, true, 0)),
       ][$.random(1, true)];
-      var setofnum = new Array();
-      setofnum.length = 6;
-      setofnum.map((i,j)=>a*Math.pow(r,j));
+      var setofnum = [];
+      for (i=0;i<6;i++) {
+        setofnum.push(a*Math.pow(r,j));
+      }
       difference = setofnum[1] - setofnum[0];
       firstTerm = setofnum[0];
       sum = (a/1-r);
