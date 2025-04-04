@@ -1483,7 +1483,7 @@ const $db = {
       firstTerm = setofnum[0];
       sum = (a/1-r);
       this.answer = (a/1-r);
-      return setofnum.join(",").concat("...");
+      return setofnum.map((a)=>{return Number.isInteger(a) ? a: frac(undefined, undefined, a)}).join(",").concat("...");
     },
     answer: null,
     interface: function (name, address) {
