@@ -1466,15 +1466,11 @@ const $db = {
   },
   Home_Series_Geometricprogression: {
     question: function () {
-      a = $.random(10, true, true);
-      b = $.random(100, true, true);
-      c = $.random(50, true, true);
-      d = $.random(10, true, true);
-      a = $.random(100, true, 0);
-      r = [
-        $.random(6, true, 0),
-        $.random(1,false, 0).toFixed(1),
-      ][$.random(1, true)];
+      var a = $.random(10, true, 0),
+      b = $.random(100, true, true),
+      n = $.random(7, true, ) + 3,
+      isFinite = ![$.random(1, true)];
+      r = isFinite ? $.random(6, true, 0) : $.random(1,false, 0).toFixed(1);
       var setofnum = [];
       for (i=0;i<6;i++) {
         setofnum.push(a*Math.pow(r,i));
@@ -1482,19 +1478,19 @@ const $db = {
       difference = setofnum[1] - setofnum[0];
       firstTerm = setofnum[0];
       sum = (a/1-r);
-      this.answer = (a/1-r);
-      return setofnum.map((a)=>{return Number.isInteger(a) ? a: frac(undefined, undefined, a)}).join(",").concat("...");
+      this.answer = isFinite ? (a(1-Math.pow(r,n))/(1-r)) : (a/1-r);
+      return [isFinite ? `of first ${n} numbers` : `to infinity`,setofnum.map((a)=>{return Number.isInteger(a) ? a: frac(undefined, undefined, a)}).join(",").concat("...")];
     },
     answer: null,
     interface: function (name, address) {
       var $$ = [];
       var questionArr = this.question();
       $$[0] = new Text(
-        this.question(),
+        questionArr[1],
         "font-size:35px; font-family: internacional"
       );
             $$[1] = new Break();
-            $$[2] = new Text('What is the sum to infinity?', 'font-weight: 900; font-size: 47px; font-style: italic; font-family: georgia;');
+            $$[2] = new Text('What is the sum ' + questionArr[0] + '?', 'font-weight: 900; font-size: 47px; font-style: italic; font-family: georgia;');
             $$[4] = new Input();       
             $$[8] = new Break();
             $$[10] = new Button();
