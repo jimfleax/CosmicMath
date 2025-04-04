@@ -195,8 +195,8 @@ const $db = {
   },
   Home_Arithmetic_Multiply_Easy: {
     question: function () {
-      var a = $.random(100, true, 0);
-      var b = $.random(100, true, 0);
+      var a = $.random(10, true, 0);
+      var b = $.random(10, true, 0);
       this.answer = a * b;
       return a + " × " + b;
     },
@@ -243,8 +243,8 @@ const $db = {
   },
   Home_Arithmetic_Multiply_Medium: {
     question: function () {
-      var a = $.random(10000, true, 0);
-      var b = $.random(1000, true, 0);
+      var a = $.random(100, true, 0);
+      var b = $.random(100, true, 0);
       this.answer = a * b;
       return a + " × " + b;
     },
@@ -291,8 +291,8 @@ const $db = {
   },
   Home_Arithmetic_Multiply_Difficult: {
     question: function () {
-      var a = parseFloat($.random(1000, false, 0).toFixed(2));
-      var b = parseFloat($.random(1000, false, 0).toFixed(2));
+      var a = parseFloat($.random(100, false, 0).toFixed(2));
+      var b = parseFloat($.random(100, false, 0).toFixed(2));
       this.answer = a * b;
       return a + " × " + b;
     },
@@ -393,7 +393,7 @@ const $db = {
   },
   Home_Arithmetic_Indices_Easy: {
     question: function () {
-      var a = $.random(100, true, 0);
+      var a = $.random(20, true, 0);
       var b = $.random(3, true, 0, 1);
       this.answer = Math.pow(a, b);
       return a + expo(b);
@@ -441,8 +441,8 @@ const $db = {
   },
   Home_Arithmetic_Indices_Medium: {
     question: function () {
-      var a = $.random(100, true, 0);
-      var b = $.random(6, true, 0, 1);
+      var a = $.random(50, true, 0);
+      var b = $.random(5, true, 0, 1);
       this.answer = Math.pow(a, b);
       return a + expo(b);
     },
@@ -490,7 +490,7 @@ const $db = {
   Home_Arithmetic_Indices_Difficult: {
     question: function () {
       var a = $.random(100, true, 0);
-      var b = $.random(10, true, 0, 1);
+      var b = $.random(4, true, 0, 1);
       this.answer = Math.pow(a, b);
       return a + expo(b);
     },
@@ -1119,7 +1119,7 @@ const $db = {
   },
   Home_Permutationsandcombinations_Factorials: {
     question: function () {
-      var a = $.random(10, true, 0);
+      var a = $.random(15, true, 0);
       result = [];
       for (i = a; i >= 1; i--) {
         result.push(i);
@@ -1171,7 +1171,7 @@ const $db = {
   Home_Permutationsandcombinations_Permutations: {
     question: function () {
       var a = $.random(10, true, 0);
-      var b = $.random(a, true, 0);
+      var b = $.random(a, true, 0,a);
 
       factorial = (num) => {
         result = [];
@@ -1231,7 +1231,7 @@ const $db = {
   Home_Permutationsandcombinations_Combinations: {
     question: function () {
       var a = $.random(10, true, 0);
-      var b = $.random(a, true, 0);
+      var b = $.random(a, true, 0,a);
 
       factorial = (num) => {
         result = [];
