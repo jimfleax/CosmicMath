@@ -1473,7 +1473,7 @@ const $db = {
       a = $.random(100, true, 0);
       r = [
         $.random(6, true, 0),
-        frac($.random(9, true, 0), $.random(9, true, 0)),
+        $.random(1,false, 0).toFixed(1),
       ][$.random(1, true)];
       var setofnum = [];
       for (i=0;i<6;i++) {
