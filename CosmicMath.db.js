@@ -1477,7 +1477,7 @@ const $db = {
       ][$.random(1, true)];
       var setofnum = [];
       for (i=0;i<6;i++) {
-        setofnum.push(a*Math.pow(r,j));
+        setofnum.push(a*Math.pow(r,i));
       }
       difference = setofnum[1] - setofnum[0];
       firstTerm = setofnum[0];
