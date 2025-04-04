@@ -1481,7 +1481,7 @@ const $db = {
       difference = setofnum[1] - setofnum[0];
       firstTerm = setofnum[0];
       sum = (a/1-r);
-      this.answer = [term, sum];
+      this.answer = (a/1-r);
       return setofnum.join(",").concat("...");
     },
     answer: null,
