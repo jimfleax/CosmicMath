@@ -1475,21 +1475,13 @@ const $db = {
         $.random(6, true, 0),
         frac($.random(9, true, 0), $.random(9, true, 0)),
       ][$.random(1, true)];
-      setofnum = [b, b * a, b + a * 2, b + a * 3, b + a * 4, b + a * 5];
-      setofnum = [
-        a,
-        a * r,
-        a * Math.pow(r, 2),
-        a * Math.pow(r, 3),
-        a * Math.pow(r, 4),
-        a * Math.pow(r, 5),
-      ];
+      setofnum.length = 6;
+      setofnum.map((i,j)=>a*Math.pow(r,j));
       difference = setofnum[1] - setofnum[0];
       firstTerm = setofnum[0];
-      sum = ((firstTerm + b + a * (c - 1)) / 2) * c;
-      term = b + a * (d - 1);
+      sum = (a/1-r);
       this.answer = [term, sum];
-      return "Coming soon";
+      return setofnum.join(",").concat("...");
     },
     answer: null,
     interface: function (name, address) {
@@ -1499,20 +1491,14 @@ const $db = {
         this.question(),
         "font-size:1.5em; font-family: internacional"
       );
-      /*
             $$[1] = new Break();
-            $$[2] = new Text('T', 'font-weight: 900; font-size: 47px; font-style: italic; font-family: georgia;');
-            $$[3] = new Text(questionArr[1], 'font-size: 25px; font-weight: 400;');
-            $$[4] = new Input();
-            $$[5] = new Text('S', 'font-weight: 900; font-size: 47px; font-style: italic; font-family: georgia;');
-            $$[6] = new Text(questionArr[2], 'font-size: 25px; font-weight: 400;');
-            $$[7] = new Input();            
+            $$[2] = new Text('What is the sum to infinity?', 'font-weight: 900; font-size: 47px; font-style: italic; font-family: georgia;');
+            $$[4] = new Input();       
             $$[8] = new Break();
             $$[10] = new Button();
-            ans = this.answer;*/
+            ans = this.answer;
       $$.forEach(function (e) {
         document.querySelector("#appMain").append(e);
-        /*
                 switch (e.localName) {
                 case 'input':
                     e.onkeypress = function(i) {
@@ -1533,7 +1519,7 @@ const $db = {
                     null;
                     break;
 
-                }*/
+                }
       });
     },
   },
